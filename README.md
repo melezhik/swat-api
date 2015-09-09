@@ -30,7 +30,7 @@ UI and REST api to [swat](https://github.com/melezhik/swat) engine.
 
 # HOME PAGE
 
-https://github.com/melezhik/swatapi
+https://github.com/melezhik/swat-api
 
 # COPYRIGHT
 

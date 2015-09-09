@@ -5,14 +5,13 @@ UI and REST api to [swat](https://github.com/melezhik/swat) engine.
 # Features List
 
     ## UI
-    - list of available /installed site swat packages
-    - list of local swat packages ( projects )
+    - list of available / installed swat packages
+    - list of local packages
     - install/update/remove site package
-    - show curl call to run swat test for given local/site package
     - run test manually
 
     ## RESTAPI
-    - run swat test ( local/site package ) against a given host and return result in required format:
+    - run swat test ( local/swat package ) against a given host and return result in required format:
         - TAP
         - nagios
         - sensu

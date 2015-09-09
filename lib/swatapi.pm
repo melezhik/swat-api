@@ -1,8 +1,16 @@
-# SYNOPSIS
+package swatapi;
+our $VERSION = '0.1.0';
+1;
 
-UI and REST api to [swat](https://github.com/melezhik/swat) engine.
 
-# Features List
+__END__
+
+
+=head1 SYNOPSIS
+
+UI and REST api to L<swat|https://github.com/melezhik/swat> engine.
+
+=head1 Features List
 
     ## UI
     - list of available /installed site swat packages
@@ -17,29 +25,34 @@ UI and REST api to [swat](https://github.com/melezhik/swat) engine.
         - nagios
         - sensu
 
-# INSTALL
+=head1 INSTALL
+
 
     perl Makefile.PL
     make
     make test
     make install
 
-# USAGE
+=head1 USAGE
 
     # run swatapi server
 
     $ swatapi -d
 
-# HOME PAGE
+
+=head1 HOME PAGE
 
 https://github.com/melezhik/swatapi
 
-# COPYRIGHT
+
+=head1 COPYRIGHT
 
 Copyright 2015 Alexey Melezhik.
 
 This program is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
 
-# AUTHOR
+
+=head1 AUTHOR
 
 Alexey Melezhik
+

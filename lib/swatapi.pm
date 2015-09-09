@@ -61,8 +61,7 @@ run swat test ( local/swat package ) against a given host and return result in r
 
 =head1 HOME PAGE
 
-https://github.com/melezhik/swatapi
-
+https://github.com/melezhik/swat-api
 
 =head1 COPYRIGHT
 

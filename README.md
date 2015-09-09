@@ -4,17 +4,16 @@ UI and REST api to [swat](https://github.com/melezhik/swat) engine.
 
 # Features List
 
-    ## UI
-    - list of available / installed swat packages
-    - list of local packages
-    - install/update/remove site package
-    - run test manually
+## UI
 
-    ## RESTAPI
-    - run swat test ( local/swat package ) against a given host and return result in required format:
-        - TAP
-        - nagios
-        - sensu
+- list of available / installed swat packages
+- list of local packages
+- install/update/remove site package
+- run swat tests
+
+## RESTAPI
+
+- run swat test ( local/swat package ) against a given host and return result in required format ( TAP / nagios )
 
 # INSTALL
 

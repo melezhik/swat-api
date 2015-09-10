@@ -1,8 +1,8 @@
 use inc::Module::Install;
 
 # Define metadata
-name           'swatapi';
-all_from       'lib/swatapi.pm';
+name           'swatman';
+all_from       'lib/swatman.pm';
 abstract       'UI and REST api to swat engine';
 
 requires       'swat';

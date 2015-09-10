@@ -8,6 +8,7 @@ abstract       'UI and REST api to swat engine';
 requires       'swat';
 
 requires       'Mojolicious';
+requires       'MetaCPAN::Client';
 
 test_requires  'Test::More'   => '0';
 

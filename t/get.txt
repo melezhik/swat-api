@@ -1,1 +1,2 @@
 200 OK
+regexp: ([1-9]+) packages found

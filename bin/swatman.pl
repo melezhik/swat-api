@@ -13,11 +13,31 @@ get '/' => sub {
     my $list = [];
     open F, "pkg.list" or die $!;
     while (my $l = <F> ){
+
         chomp $l;
-        push @$list, $l;
+
+
+        my %data = ( NAME => $l, FOUND => '0' , VERSION => '?' );
+
+        eval {
+            my $module = MetaCPAN::Client->new->module($l);
+            $data{VERSION} = $module->version;
+            $data{FOUND} = 1;
+            #NAME        => $module->name,
+            #ABSTRACT    => $module->abstract,
+            #DESCRIPTION => $module->description,
+            #RELEASE     => $module->release,
+            #AUTHOR      => $module->author,
+            #VERSION     => $module->version,
+        };
+
+        if ($@){
+            # handle exeption here
+        }
+
+        push @$list, \%data;
     }
     close F;
-
     $c->render(template => 'index', list => $list );
 };
 
@@ -37,13 +57,16 @@ __DATA__
 <thead>
     <tr>
         <th>name</th>
+        <th>metacpan found</th>
+        <th>version</th>
     </tr>
 </thead>
 <tbody>
 <% foreach my $i (@$list) { %>
 <tr>
-    <% chomp $i; %>
-    <td><%= $i %></td>
+    <td><%= $i->{NAME} %></td>
+    <td><%= $i->{FOUND} %></td>
+    <td><%= $i->{VERSION} %></td>
 </tr>
 <% } %>
 <tbody>

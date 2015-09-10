@@ -1,4 +1,4 @@
-package swatapi;
+package swatman;
 our $VERSION = '0.1.0';
 1;
 
@@ -22,15 +22,7 @@ list of available / installed swat packages
 
 =item *
 
-list of local packages
-
-=item *
-
-install/update/remove site package
-
-=item *
-
-run swat tests
+install/update/remove swat package
 
 =back
 
@@ -40,7 +32,7 @@ run swat tests
 
 =item *
 
-run swat test ( local/swat package ) against a given host and return result in required format ( TAP / nagios )
+run swat tests against a given host and return result in required format ( TAP / nagios )
 
 =back
 
@@ -54,14 +46,14 @@ run swat test ( local/swat package ) against a given host and return result in r
 
 =head1 USAGE
 
-    # run swatapi server
+    # run swatman server
 
-    $ swatapi -d
+    $ swatman -d
 
 
 =head1 HOME PAGE
 
-https://github.com/melezhik/swat-api
+https://github.com/melezhik/swatman
 
 =head1 COPYRIGHT
 

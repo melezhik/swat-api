@@ -1,7 +1,13 @@
 #!/usr/bin/env perl
-use Mojolicious::Lite;
-use MetaCPAN::Client;
+
 use strict;
+use Mojolicious::Lite;
+
+use CHI;
+use WWW::Mechanize::Cached;
+use HTTP::Tiny::Mech;
+use MetaCPAN::Client;
+
 
 plugin 'BootstrapHelpers';
 
@@ -9,6 +15,18 @@ get '/' => sub {
     my $c = shift;
 
     my $list = [];
+
+    my $meta_client = MetaCPAN::Client->new(
+      ua => HTTP::Tiny::Mech->new(
+        mechua => WWW::Mechanize::Cached->new(
+          cache => CHI->new(
+            driver   => 'File',
+            root_dir => "$ENV{HOME}/.swatman/metacpan/cache/",
+          ),
+        ),
+      ),
+    );
+
     open F, "pkg.list" or die $!;
     while (my $l = <F> ){
 
@@ -16,9 +34,8 @@ get '/' => sub {
 
 
         my %data = ( NAME => $l, FOUND => '0' , VERSION => '?' );
-
         eval {
-            my $module = MetaCPAN::Client->new->module($l);
+            my $module = $meta_client->module($l);
             $data{VERSION} = $module->version;
             $data{FOUND} = 1;
             #NAME        => $module->name,

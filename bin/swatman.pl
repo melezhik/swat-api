@@ -31,13 +31,13 @@ get '/' => sub {
     while (my $l = <F> ){
 
         chomp $l;
+        next unless $l=~/\S/;
 
-
-        my %data = ( NAME => $l, FOUND => '0' , VERSION => '?' );
+        my %data = ( NAME => $l, FOUND => 'no' , VERSION => '?' );
         eval {
             my $module = $meta_client->module($l);
             $data{VERSION} = $module->version;
-            $data{FOUND} = 1;
+            $data{FOUND} = 'yes';
             #NAME        => $module->name,
             #ABSTRACT    => $module->abstract,
             #DESCRIPTION => $module->description,
@@ -63,6 +63,7 @@ __DATA__
 
 %= bootstrap 'all'
 
+<head><title>Swatman - your swat engine runner</title></head>
 
 <div class="panel panel-default">
     <div class="panel-body">Swat Packages List. Packages found: <%= @{$list} %></div>
@@ -72,7 +73,7 @@ __DATA__
 <thead>
     <tr>
         <th>name</th>
-        <th>metacpan found</th>
+        <th>found at metacpan</th>
         <th>version</th>
     </tr>
 </thead>

@@ -31,16 +31,23 @@ __DATA__
 %= bootstrap 'all'
 
 
-<h1>Swat Packages List</h1>
+<div class="panel panel-default">
+    <div class="panel-body">Swat Packages List. Packages found: <%= @{$list} %></div>
+</div>
 
-<%= @{$list} %> packages found:
-<table>
-<th>name</th>
+<table class="table">
+<thead>
+    <tr>
+        <th>name</th>
+    </tr>
+</thead>
+<tbody>
 <% foreach my $i (@$list) { %>
 <tr>
     <% chomp $i; %>
     <td><%= $i %></td>
 </tr>
 <% } %>
+<tbody>
 </table>
 

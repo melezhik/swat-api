@@ -9,6 +9,7 @@ requires       'swat';
 
 requires       'Mojolicious';
 requires       'MetaCPAN::Client';
+requires       'Mojolicious::Plugin::BootstrapHelpers';
 
 test_requires  'Test::More'   => '0';
 

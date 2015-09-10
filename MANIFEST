@@ -1,5 +1,5 @@
 bin/foo.pl
-bin/swatapi.pl
+bin/swatman.pl
 inc/Module/Install.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm
@@ -14,6 +14,11 @@ Makefile.PL
 MANIFEST			This list of files
 MYMETA.json
 MYMETA.yml
+pkg.list
 README
 README.md
+swat.my
 t/00.t
+t/get.txt
+t/host
+t/swat.ini

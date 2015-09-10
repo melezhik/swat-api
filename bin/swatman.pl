@@ -3,8 +3,6 @@ use Mojolicious::Lite;
 use MetaCPAN::Client;
 use strict;
 
-# Documentation browser under "/perldoc"
-plugin 'PODRenderer';
 plugin 'BootstrapHelpers';
 
 get '/' => sub {
@@ -32,7 +30,7 @@ get '/' => sub {
         };
 
         if ($@){
-            # handle exeption here
+            # TODO: handle metacpan related exeptions here
         }
 
         push @$list, \%data;

@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 use Mojolicious::Lite;
+use MetaCPAN::Client;
 
 # Documentation browser under "/perldoc"
 plugin 'PODRenderer';

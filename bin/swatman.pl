@@ -26,8 +26,6 @@ __DATA__
 
 @@ index.html.ep
 
-% title 'Green';
-% layout 'green';
 %= bootstrap 'all'
 
 

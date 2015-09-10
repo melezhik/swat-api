@@ -1,2 +1,2 @@
 200 OK
-regexp: ([1-9]+) packages found
+regexp: Packages found:\s+([1-9]+)

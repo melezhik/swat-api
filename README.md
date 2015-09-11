@@ -1,6 +1,6 @@
 # SYNOPSIS
 
-<Swat|https://github.com/melezhik/swat> repository.
+<Swat packages|https://github.com/melezhik/swat> repository.
 
 # Features List
 

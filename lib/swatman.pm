@@ -8,7 +8,7 @@ __END__
 
 =head1 SYNOPSIS
 
-<Swat|https://github.com/melezhik/swat> repository.
+<Swat packages|https://github.com/melezhik/swat> repository.
 
 =head1 Features List
 

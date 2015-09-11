@@ -26,7 +26,7 @@ get '/search' => sub {
         next unless $pkg=~/\S/;
         s/\s//g for $pkg;
 
-        my $re = qr/$sq/;
+        my $re = $sq ? qr/$sq/i : qr/.*/;
 
         if ($pkg =~ $re){
 
@@ -45,7 +45,7 @@ get '/search' => sub {
                     version => $cpan_obj->cpan_version ,
                     author => ($author->fullname).' / '.($author->email),
                     abstract => "",
-                    description => $cpan_obj->manpage_headline,
+                    description => $cpan_obj->description,
                     date => $cpan_obj->distribution->upload_date,
                 }
     

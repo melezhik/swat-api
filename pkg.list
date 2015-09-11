@@ -2,3 +2,4 @@ swat::nginx
 swat::dancer
 swat::lighttpd
 CGI
+DBI

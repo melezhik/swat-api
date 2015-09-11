@@ -8,12 +8,9 @@ abstract       'UI and REST api to swat engine';
 requires       'swat';
 
 requires       'Mojolicious';
-requires       'MetaCPAN::Client';
 requires       'Mojolicious::Plugin::BootstrapHelpers';
-requires       'WWW::Mechanize::Cached';
-requires       'HTTP::Tiny::Mech'; 
-requires       'CHI'; 
-
+requires       'CPAN';
+ 
 test_requires  'Test::More'   => '0';
 
 license 'perl';

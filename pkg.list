@@ -1,4 +1,4 @@
 swat::nginx
 swat::dancer
-swat::ligttpd
+swat::lighttpd
 

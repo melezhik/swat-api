@@ -19,6 +19,8 @@ README
 README.md
 swat.my
 t/00.t
+t/:search/get.txt
+t/:search/swat.ini
 t/get.txt
 t/host
 t/swat.ini

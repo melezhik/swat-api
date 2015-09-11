@@ -11,40 +11,51 @@ use MetaCPAN::Client;
 
 plugin 'BootstrapHelpers';
 
-get '/' => sub {
+get '/' => 'search_form';
+
+get '/search' => sub {
 
     my $c = shift;
 
-} => 'index';
+    my $pkg = $c->param('search_query');
 
-get '/foo' => sub {
-
-    my $c = shift;
-
-    my $list = [];
-
-    my $meta_client = MetaCPAN::Client->new(
-      ua => HTTP::Tiny::Mech->new(
-        mechua => WWW::Mechanize::Cached->new(
-          cache => CHI->new(
-            driver   => 'File',
-            root_dir => "$ENV{HOME}/.swatman/metacpan/cache/",
-          ),
-        ),
-      ),
-    );
 
     open F, "pkg.list" or die $!;
+    my $pkg_listed;
     while (my $l = <F> ){
 
         chomp $l;
         next unless $l=~/\S/;
+        s/\s//g for $l;
+        $pkg_listed = 1 if $l eq $pkg;
 
-        my %data = ( NAME => $l, FOUND => 'no' , VERSION => '?' );
+    }
+
+    close F;
+
+
+    if ($pkg_listed){
+        app->log->debug("pkg $pkg is listed");
+        my $meta_client = MetaCPAN::Client->new(
+          ua => HTTP::Tiny::Mech->new(
+            mechua => WWW::Mechanize::Cached->new(
+              cache => CHI->new(
+                driver   => 'File',
+                root_dir => "$ENV{HOME}/.swatman/metacpan/cache/",
+              ),
+            ),
+          ),
+        );
+
         eval {
-            my $module = $meta_client->module($l);
-            $data{VERSION} = $module->version;
-            $data{FOUND} = 'yes';
+
+            my $m = $meta_client->module($pkg);
+
+            $c->stash(pkg_found => 1);
+            $c->stash(pkg_version => $m->version);
+            $c->stash(pkg_author => $m->author);
+            $c->stash(pkg_abstract => $m->abstract);
+
             #NAME        => $module->name,
             #ABSTRACT    => $module->abstract,
             #DESCRIPTION => $module->description,
@@ -54,60 +65,40 @@ get '/foo' => sub {
         };
 
         if ($@){
-            # TODO: handle metacpan related exeptions here
+            $c->stash(pkg_found => 0);
+            app->log->error("$pkg not found on cpanmeta");
+            # TODO: handle cpanmeta related exeptions here
         }
 
-        push @$list, \%data;
+    }else{
+        app->log->debug("pkg $pkg is not listed");
     }
-    close F;
-    $c->render(template => 'index', list => $list );
-} => 'foo';
+
+} => 'pkg_info';
+
+helper app_title => sub {
+    '<head><title>Swatman - Swat Packages Repository</title></head>'
+};
 
 app->start;
 __DATA__
 
-@@ index.html.ep
+@@ search_form.html.ep
+%= app_title
 %= bootstrap 'all'
 
-<head><title>Swatman - your swat engine runner</title></head>
+<div class="panel-body">Search Swat Packages
 
-<div class="panel-body">Search Swat Packages</div>
-
-<div class="panel panel-default">
-
-    <form class="form-horizontal" method="GET" action="/search">
-
-        <div class="form-group">
-
-            <label for="sq" class="control-label col-xs-2">Search Query</label>
-
-            <div class="col-xs-10">
-
-                <input type="text" class="form-control" id="sq" placeholder="sq">
-
-            </div>
-
-        </div>
-
-        <div class="form-group">
-
-            <div class="col-xs-offset-2 col-xs-10">
-
-                <button type="submit" class="btn btn-primary">Search</button>
-
-            </div>
-
-        </div>
-
-    </form>
-
+    %= form_for search_query => begin
+      %= text_field 'search_query'
+      %= submit_button 'Go'
+    % end
+    
 </div>
 
-
-@@ foo.html.ep
+@@ pkg_info.html.ep
+%= app_title
 %= bootstrap 'all'
-
-<head><title>Swatman - your swat engine runner</title></head>
 
 <div class="panel panel-default">
     <div class="panel-body">Swat Packages List. Packages found: <%= @{$list} %></div>

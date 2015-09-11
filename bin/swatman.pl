@@ -33,6 +33,8 @@ get '/search' => sub {
 
     close F;
 
+    $c->stash(pkg_name => $pkg);
+
 
     if ($pkg_listed){
         app->log->debug("pkg $pkg is listed");
@@ -76,20 +78,16 @@ get '/search' => sub {
 
 } => 'pkg_info';
 
-helper app_title => sub {
-    '<head><title>Swatman - Swat Packages Repository</title></head>'
-};
-
 app->start;
 __DATA__
 
 @@ search_form.html.ep
-%= app_title
 %= bootstrap 'all'
-
+<head><title>Swatman - Swat Packages Repository</title></head>
+    
 <div class="panel-body">Search Swat Packages
 
-    %= form_for search_query => begin
+    %= form_for search => begin
       %= text_field 'search_query'
       %= submit_button 'Go'
     % end
@@ -97,29 +95,28 @@ __DATA__
 </div>
 
 @@ pkg_info.html.ep
-%= app_title
 %= bootstrap 'all'
+<head><title>Swatman - Swat Packages Repository</title></head>
 
 <div class="panel panel-default">
-    <div class="panel-body">Swat Packages List. Packages found: <%= @{$list} %></div>
+    <div class="panel-body">Swat Package Info: <strong><%= $pkg_name  %></strong></div>
 </div>
 
 <table class="table">
 <thead>
     <tr>
         <th>name</th>
+        <th>author</th>
         <th>found at metacpan</th>
         <th>version</th>
     </tr>
 </thead>
 <tbody>
-<% foreach my $i (@$list) { %>
 <tr>
-    <td><%= $i->{NAME} %></td>
-    <td><%= $i->{FOUND} %></td>
-    <td><%= $i->{VERSION} %></td>
+    <td> <%= $pkg_name  %></td>
+    <td> <%= $pkg_found %></td>
+    <td> <%= $pkg_version %></td>
 </tr>
-<% } %>
 <tbody>
 </table>
 

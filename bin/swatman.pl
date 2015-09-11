@@ -7,7 +7,7 @@ use CHI;
 use WWW::Mechanize::Cached;
 use HTTP::Tiny::Mech;
 use MetaCPAN::Client;
-
+use Data::Dumper;
 
 plugin 'BootstrapHelpers';
 
@@ -21,62 +21,67 @@ get '/search' => sub {
 
 
     open F, "pkg.list" or die $!;
-    my $pkg_listed;
+
+    my @list = ();
+
     while (my $l = <F> ){
 
         chomp $l;
         next unless $l=~/\S/;
         s/\s//g for $l;
-        $pkg_listed = 1 if $l eq $pkg;
 
-    }
+        my $re = qr/$pkg/;
+
+        if ($l =~ $re){
+
+            app->log->debug("pkg $pkg is listed");
+            my $meta_client = MetaCPAN::Client->new(
+              ua => HTTP::Tiny::Mech->new(
+                mechua => WWW::Mechanize::Cached->new(
+                  cache => CHI->new(
+                    driver   => 'File',
+                    root_dir => "$ENV{HOME}/.swatman/metacpan/cache/",
+                  ),
+                ),
+              ),
+            );
+    
+            eval {
+    
+                my $m = $meta_client->module($pkg);
+                push @list, {
+                    version => $m->version ,
+                    author => $m->author,
+                    abstract => $m->abstract,
+                    description => $m->description,
+                    release => $m->release,
+                }
+    
+                #NAME        => $module->name,
+                #ABSTRACT    => $module->abstract,
+                #DESCRIPTION => $module->description,
+                #RELEASE     => $module->release,
+                #AUTHOR      => $module->author,
+                #VERSION     => $module->version,
+            };
+    
+            if ($@){
+                app->log->error("cpanmeta client error: $@");
+                app->log->error("$pkg not found on cpanmeta");
+                # TODO: handle cpanmeta related exeptions here
+            }
+    
+        }
+    
+
+    } # next line in pkg.list
 
     close F;
 
-    $c->stash(pkg_name => $pkg);
+    $c->stash(list => \@list );
+    $c->stash(count => scalar @list );
 
-
-    if ($pkg_listed){
-        app->log->debug("pkg $pkg is listed");
-        my $meta_client = MetaCPAN::Client->new(
-          ua => HTTP::Tiny::Mech->new(
-            mechua => WWW::Mechanize::Cached->new(
-              cache => CHI->new(
-                driver   => 'File',
-                root_dir => "$ENV{HOME}/.swatman/metacpan/cache/",
-              ),
-            ),
-          ),
-        );
-
-        eval {
-
-            my $m = $meta_client->module($pkg);
-
-            $c->stash(pkg_found => 1);
-            $c->stash(pkg_version => $m->version);
-            $c->stash(pkg_author => $m->author);
-            $c->stash(pkg_abstract => $m->abstract);
-
-            #NAME        => $module->name,
-            #ABSTRACT    => $module->abstract,
-            #DESCRIPTION => $module->description,
-            #RELEASE     => $module->release,
-            #AUTHOR      => $module->author,
-            #VERSION     => $module->version,
-        };
-
-        if ($@){
-            $c->stash(pkg_found => 0);
-            app->log->error("$pkg not found on cpanmeta");
-            # TODO: handle cpanmeta related exeptions here
-        }
-
-    }else{
-        app->log->debug("pkg $pkg is not listed");
-    }
-
-} => 'pkg_info';
+} => 'search_results';
 
 app->start;
 __DATA__
@@ -94,30 +99,38 @@ __DATA__
     
 </div>
 
-@@ pkg_info.html.ep
+@@ search_results.html.ep
 %= bootstrap 'all'
 <head><title>Swatman - Swat Packages Repository</title></head>
 
-<div class="panel panel-default">
-    <div class="panel-body">Swat Package Info: <strong><%= $pkg_name  %></strong></div>
-</div>
 
-<table class="table">
-<thead>
+    <div class="panel panel-default">
+        <div class="panel-body">Packages found: <strong><%= $count  %></strong></div>
+    </div>
+    <% if ($count) { %>
+    <table class="table">
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>author</th>
+            <th>version</th>
+            <th>abstract</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% foreach my $p (@{$list}) { %>
     <tr>
-        <th>name</th>
-        <th>author</th>
-        <th>found at metacpan</th>
-        <th>version</th>
+        <td> <%= $p->{name}  %></td>
+        <td> <%= $p->{author}  %></td>
+        <td> <%= $p->{version} %></td>
+        <td> <%= $p->{abstract} %></td>
     </tr>
-</thead>
-<tbody>
-<tr>
-    <td> <%= $pkg_name  %></td>
-    <td> <%= $pkg_found %></td>
-    <td> <%= $pkg_version %></td>
-</tr>
-<tbody>
-</table>
+    <% } %>
+    <tbody>
+    </table>
+    <% } %>
 
-
+<!--
+    Debug Info
+    Packages found:<%= $count  %>
+-->

@@ -1,2 +1,2 @@
 200 OK
-regexp: Swat Package Info:.*swat::nginx
+regexp: Packages found:([1-9]+)

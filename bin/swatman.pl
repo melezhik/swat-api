@@ -71,8 +71,36 @@ __DATA__
 
 <head><title>Swatman - your swat engine runner</title></head>
 
+<div class="panel-body">Search Swat Packages</div>
+
 <div class="panel panel-default">
-    <div class="panel-body">Search Swat Packages</div>
+
+    <form class="form-horizontal" method="GET" action="/search">
+
+        <div class="form-group">
+
+            <label for="sq" class="control-label col-xs-2">Search Query</label>
+
+            <div class="col-xs-10">
+
+                <input type="text" class="form-control" id="sq" placeholder="sq">
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-xs-offset-2 col-xs-10">
+
+                <button type="submit" class="btn btn-primary">Search</button>
+
+            </div>
+
+        </div>
+
+    </form>
+
 </div>
 
 

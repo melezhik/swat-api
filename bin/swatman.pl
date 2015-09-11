@@ -12,6 +12,13 @@ use MetaCPAN::Client;
 plugin 'BootstrapHelpers';
 
 get '/' => sub {
+
+    my $c = shift;
+
+} => 'index';
+
+get '/foo' => sub {
+
     my $c = shift;
 
     my $list = [];
@@ -54,13 +61,22 @@ get '/' => sub {
     }
     close F;
     $c->render(template => 'index', list => $list );
-};
+} => 'foo';
 
 app->start;
 __DATA__
 
 @@ index.html.ep
+%= bootstrap 'all'
 
+<head><title>Swatman - your swat engine runner</title></head>
+
+<div class="panel panel-default">
+    <div class="panel-body">Search Swat Packages</div>
+</div>
+
+
+@@ foo.html.ep
 %= bootstrap 'all'
 
 <head><title>Swatman - your swat engine runner</title></head>
@@ -87,4 +103,5 @@ __DATA__
 <% } %>
 <tbody>
 </table>
+
 

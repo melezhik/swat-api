@@ -44,9 +44,6 @@ get '/search' => sub {
                     name => $pkg ,
                     version => $cpan_obj->cpan_version ,
                     author => ($author->fullname).' / '.($author->email),
-                    abstract => "",
-                    description => $cpan_obj->description,
-                    date => $cpan_obj->distribution->upload_date,
                 }
     
                 #NAME        => $module->name,
@@ -106,20 +103,16 @@ __DATA__
     <thead>
         <tr>
             <th>name</th>
-            <th>date</th>
             <th>author</th>
             <th>version</th>
-            <th>description</th>
         </tr>
     </thead>
     <tbody>
     <% foreach my $p (@{$list}) { %>
     <tr>
         <td> <%= $p->{name}  %></td>
-        <td> <%= $p->{date}  %></td>
         <td> <%= $p->{author}  %></td>
         <td> <%= $p->{version} %></td>
-        <td> <%= $p->{description} %></td>
     </tr>
     <% } %>
     <tbody>

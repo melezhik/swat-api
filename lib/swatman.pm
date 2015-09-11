@@ -8,7 +8,7 @@ __END__
 
 =head1 SYNOPSIS
 
-UI and REST api to L<swat|https://github.com/melezhik/swat> engine.
+<Swat|https://github.com/melezhik/swat> repository.
 
 =head1 Features List
 
@@ -18,21 +18,27 @@ UI and REST api to L<swat|https://github.com/melezhik/swat> engine.
 
 =item *
 
-list of available / installed swat packages
+list of available swat packages
 
 =item *
 
-install/update/remove swat package
-
-=back
-
-=head2 RESTAPI
-
-=over
+install notes
 
 =item *
 
-run swat tests against a given host and return result in required format ( TAP / nagios )
+changlelogs
+
+=item *
+
+pod documentation
+
+=item *
+
+raitings
+
+=item *
+
+comments
 
 =back
 

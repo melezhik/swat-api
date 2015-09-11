@@ -1,19 +1,17 @@
 # SYNOPSIS
 
-UI and REST api to [swat](https://github.com/melezhik/swat) engine.
+<Swat|https://github.com/melezhik/swat> repository.
 
 # Features List
 
 ## UI
 
-- list of available / installed swat packages
-- list of local packages
-- install/update/remove site package
-- run swat tests
-
-## RESTAPI
-
-- run swat test ( local/swat package ) against a given host and return result in required format ( TAP / nagios )
+- list of available swat packages
+- install notes
+- changlelogs
+- pod documentation
+- raitings
+- comments
 
 # INSTALL
 
@@ -24,13 +22,13 @@ UI and REST api to [swat](https://github.com/melezhik/swat) engine.
 
 # USAGE
 
-    # run swatapi server
+    # run swatman server
 
-    $ swatapi -d
+    $ swatman -d
 
 # HOME PAGE
 
-https://github.com/melezhik/swat-api
+https://github.com/melezhik/swatman
 
 # COPYRIGHT
 

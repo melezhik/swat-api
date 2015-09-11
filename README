@@ -1,19 +1,19 @@
 SYNOPSIS
-    UI and REST api to swat <https://github.com/melezhik/swat> engine.
+    <Swat|https://github.com/melezhik/swat> repository.
 
 Features List
   UI
-    *   list of available / installed swat packages
+    *   list of available swat packages
 
-    *   list of local packages
+    *   install notes
 
-    *   install/update/remove site package
+    *   changlelogs
 
-    *   run swat tests
+    *   pod documentation
 
-  RESTAPI
-    *   run swat test ( local/swat package ) against a given host and return
-        result in required format ( TAP / nagios )
+    *   raitings
+
+    *   comments
 
 INSTALL
         perl Makefile.PL
@@ -22,12 +22,12 @@ INSTALL
         make install
 
 USAGE
-        # run swatapi server
+        # run swatman server
 
-        $ swatapi -d
+        $ swatman -d
 
 HOME PAGE
-    https://github.com/melezhik/swat-api
+    https://github.com/melezhik/swatman
 
 COPYRIGHT
     Copyright 2015 Alexey Melezhik.

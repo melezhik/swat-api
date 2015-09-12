@@ -125,8 +125,8 @@ __DATA__
     <tr>
         <td> <%= $p->{release}  %></td>
         <td><a href="mailto:<%= join "", @{$p->{email}} %>"><%= $p->{author}  %></a></td>
-        <td widht=100><pre><%= $p->{info} %></pre></td>
-        <td><pre>cpanm <%= $p->{name} %></pre></td>
+        <td widht=10%><div class="well"><pre><%= $p->{info} %></pre></div></td>
+        <td><span class="label label-default">cpanm <%= $p->{name} %></span></td>
     </tr>
     <% } %>
     <tbody>

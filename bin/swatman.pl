@@ -48,13 +48,16 @@ get '/search' => sub {
     
                 my $m = $meta_client->module($pkg);
                 my $a = $meta_client->author($m->author);
+                my $pod_cut = join "\n", ((split "\n", $m->pod())[0..5]);
+
                 push @list, {
-                    name        => $pkg ,
-                    version     => $m->version ,
-                    author      => $a->name,
-                    email       => $a->email,
-                    release     => $m->release,
-                    info        => $m->abstract,
+                    name            => $pkg ,
+                    version         => $m->version ,
+                    author          => $a->name,
+                    email           => $a->email,
+                    release         => $m->release,
+                    info            => $pod_cut,
+                    gravatar_url    => $a->gravatar_url
                 };
     
             };
@@ -114,6 +117,7 @@ __DATA__
             <th>name</th>
             <th>author</th>
             <th>info</th>
+            <th>install</th>
         </tr>
     </thead>
     <tbody>
@@ -121,7 +125,8 @@ __DATA__
     <tr>
         <td> <%= $p->{release}  %></td>
         <td><a href="mailto:<%= join "", @{$p->{email}} %>"><%= $p->{author}  %></a></td>
-        <td><%= $p->{info} %></td>
+        <td widht=100><pre><%= $p->{info} %></pre></td>
+        <td><pre>cpanm <%= $p->{name} %></pre></td>
     </tr>
     <% } %>
     <tbody>

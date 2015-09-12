@@ -47,16 +47,18 @@ get '/search' => sub {
             eval {
     
                 my $m = $meta_client->module($pkg);
+                my $a = $meta_client->author($m->author);
                 push @list, {
-                    name    => $pkg ,
-                    version => $m->version ,
-                    author => $m->author,
-                    abstract => $m->abstract,
-                    description => $m->description,
-                    release => $m->release,
-                }
+                    name        => $pkg ,
+                    version     => $m->version ,
+                    author      => $a->name,
+                    email       => $a->email,
+                    release     => $m->release,
+                    info        => $m->abstract,
+                };
     
             };
+            
             app->log->error("$pkg found on cpanmeta");
     
             if ($@){
@@ -77,12 +79,16 @@ get '/search' => sub {
 
 } => 'search_results';
 
+helper app_header => sub {
+    qq{<head><title>Swatman - Swat Packages Repository</title></head>}
+};
+
 app->start;
 __DATA__
 
 @@ search_form.html.ep
 %= bootstrap 'all'
-<head><title>Swatman - Swat Packages Repository</title></head>
+%== app_header
     
 <div class="panel-body">Search Swat Packages!
 
@@ -95,7 +101,7 @@ __DATA__
 
 @@ search_results.html.ep
 %= bootstrap 'all'
-<head><title>Swatman - Swat Packages Repository</title></head>
+%== app_header
 
 
     <div class="panel panel-default">
@@ -107,17 +113,15 @@ __DATA__
         <tr>
             <th>name</th>
             <th>author</th>
-            <th>version</th>
-            <th>abstract</th>
+            <th>info</th>
         </tr>
     </thead>
     <tbody>
     <% foreach my $p (@{$list}) { %>
     <tr>
-        <td> <%= $p->{name}  %></td>
-        <td> <%= $p->{author}  %></td>
-        <td> <%= $p->{version} %></td>
-        <td> <%= $p->{abstract} %></td>
+        <td> <%= $p->{release}  %></td>
+        <td><a href="mailto:<%= join "", @{$p->{email}} %>"><%= $p->{author}  %></a></td>
+        <td><%= $p->{info} %></td>
     </tr>
     <% } %>
     <tbody>

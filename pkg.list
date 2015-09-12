@@ -3,3 +3,5 @@ swat::dancer
 swat::lighttpd
 CGI
 DBI
+Moose
+

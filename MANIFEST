@@ -17,6 +17,8 @@ MYMETA.yml
 pkg.list
 README
 README.md
+search_form
+sub
 swat.my
 t/00.t
 t/:search/get.txt

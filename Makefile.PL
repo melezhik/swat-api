@@ -10,8 +10,6 @@ requires       'swat';
 requires       'Mojolicious';
 requires       'MetaCPAN::Client';
 requires       'Mojolicious::Plugin::BootstrapHelpers';
-requires       'WWW::Mechanize::Cached';
-requires       'HTTP::Tiny::Mech'; 
 requires       'CHI'; 
 
 test_requires  'Test::More'   => '0';

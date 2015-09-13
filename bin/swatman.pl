@@ -1,3 +1,5 @@
+#!/usr/bin/env perl
+
 use strict;
 use Mojolicious::Lite;
 
@@ -17,6 +19,7 @@ get '/search' => sub {
 
     my $sq = $c->param('search_query');
 
+    my $cache = CHI->new( driver => 'Memory', global => 1 );
 
     open F, "pkg.list" or die $!;
 
@@ -31,7 +34,7 @@ get '/search' => sub {
         my $re = $sq ? qr/$sq/i : qr/.*/;
 
         if ($pkg =~ $re){
-
+            
             app->log->debug("pkg $pkg is listed");
             my $meta_client = MetaCPAN::Client->new(
               ua => HTTP::Tiny::Mech->new(
@@ -45,24 +48,32 @@ get '/search' => sub {
             );
     
             eval {
-    
-                my $m = $meta_client->module($pkg);
-                my $a = $meta_client->author($m->author);
-                my $pod_cut = join "\n", ((split "\n", $m->pod())[0..5]);
 
-                push @list, {
-                    name            => $pkg ,
-                    version         => $m->version ,
-                    author          => $a->name,
-                    email           => $a->email,
-                    release         => $m->release,
-                    info            => $pod_cut,
-                    gravatar_url    => $a->gravatar_url
-                };
+                my $pkg_cached = $cache->get($pkg);
     
+                app->log->debug("$pkg cached: ".($pkg_cached ? 'YES' : 'NO' ));
+                my $m = $meta_client->module($pkg)   unless $pkg_cached;
+                my $a = $meta_client->author($m->author) unless $pkg_cached;
+
+                #my $pod_cut = join "\n", ((split "\n", $m->pod())[0..5]);
+
+
+                push @list, my $aa = {
+                    name            => $pkg ,
+                    author          => $cache->get($pkg.'::name') || $a->name,
+                    email           => $cache->get($pkg.'::email') || $a->email,
+                    release         => $cache->get($pkg.'::release') || $m->release,
+                    info            => $cache->get($pkg.'::info') || $m->abstract,
+                };
+                unless ($pkg_cached) {   
+                    for my $k (keys %$aa){
+                        app->log->debug("set cache for ".( $pkg.'::'.$k  ));
+                        $cache->set($pkg.'::'.$k , $aa->{$k}||'?');
+                    }
+                    $cache->set( $pkg, 1);
+                }
             };
-            
-            app->log->error("$pkg found on cpanmeta");
+            app->log->debug("$pkg found on cpanmeta");
     
             if ($@){
                 app->log->error("cpanmeta client error: $@");
@@ -125,7 +136,7 @@ __DATA__
     <tr>
         <td> <%= $p->{release}  %></td>
         <td><a href="mailto:<%= join "", @{$p->{email}} %>"><%= $p->{author}  %></a></td>
-        <td widht=10%><div class="well"><pre><%= $p->{info} %></pre></div></td>
+        <td><%= $p->{info} %></td>
         <td><span class="label label-default">cpanm <%= $p->{name} %></span></td>
     </tr>
     <% } %>

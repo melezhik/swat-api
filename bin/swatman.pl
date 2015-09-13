@@ -36,16 +36,7 @@ get '/search' => sub {
         if ($pkg =~ $re){
             
             app->log->debug("pkg $pkg is listed");
-            my $meta_client = MetaCPAN::Client->new(
-              ua => HTTP::Tiny::Mech->new(
-                mechua => WWW::Mechanize::Cached->new(
-                  cache => CHI->new(
-                    driver   => 'File',
-                    root_dir => "$ENV{HOME}/.swatman/metacpan/cache/",
-                  ),
-                ),
-              ),
-            );
+            my $meta_client = MetaCPAN::Client->new();
     
             eval {
 
@@ -93,6 +84,19 @@ get '/search' => sub {
 
 } => 'search_results';
 
+get '/info/:pkg' => sub {
+
+    my $c = shift;
+    my $pkg = $c->stash('pkg');
+
+    my $meta_client = MetaCPAN::Client->new();
+    
+    my $m = $meta_client->module($pkg);
+
+    $c->stash('doc' => $m->pod('html'));
+
+} => 'pkg_info';
+
 helper app_header => sub {
     qq{<head><title>Swatman - Swat Packages Repository</title></head>}
 };
@@ -125,19 +129,19 @@ __DATA__
     <table class="table">
     <thead>
         <tr>
-            <th>name</th>
-            <th>author</th>
+            <th>package</th>
             <th>info</th>
             <th>install</th>
+            <th>author</th>
         </tr>
     </thead>
     <tbody>
     <% foreach my $p (@{$list}) { %>
     <tr>
-        <td> <%= $p->{release}  %></td>
-        <td><a href="mailto:<%= join "", @{$p->{email}} %>"><%= $p->{author}  %></a></td>
+        <td><a href="/info/<%= $p->{name} %>"><%= $p->{release}  %></a></td>
         <td><%= $p->{info} %></td>
         <td><span class="label label-default">cpanm <%= $p->{name} %></span></td>
+        <td><a href="mailto:<%= join "", @{$p->{email}} %>"><%= $p->{author}  %></a></td>
     </tr>
     <% } %>
     <tbody>
@@ -149,3 +153,54 @@ __DATA__
     Packages found:<%= $count  %>
 -->
 
+@@ pkg_info.html.ep
+%= bootstrap 'all'
+%== app_header
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+    $("#myTab li:eq(1) a").tab('show');
+});
+</script>
+<style type="text/css">
+    .bs-example{
+        margin: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="bs-example">
+    <ul class="nav nav-tabs" id="myTab">
+        <li><a data-toggle="tab" href="#sectionA">Documentation</a></li>
+        <li><a data-toggle="tab" href="#sectionB">Section B</a></li>
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a data-toggle="tab" href="#dropdown1">Dropdown1</a></li>
+                <li><a data-toggle="tab" href="#dropdown2">Dropdown2</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="sectionA" class="tab-pane fade in active">
+            <h3>Documentation</h3>
+            <%== $doc %>
+        </div>
+        <div id="sectionB" class="tab-pane fade">
+            <h3>Section B</h3>
+            <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+        </div>
+        <div id="dropdown1" class="tab-pane fade">
+            <h3>Dropdown 1</h3>
+            <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+        </div>
+        <div id="dropdown2" class="tab-pane fade">
+            <h3>Dropdown 2</h3>
+            <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis dis parturient.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>                                     

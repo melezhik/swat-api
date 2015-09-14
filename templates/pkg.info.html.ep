@@ -21,6 +21,7 @@ $(document).ready(function(){
 <div class="bs-example">
     <ul class="nav nav-tabs" id="myTab">
         <li><a data-toggle="tab" href="#sectionB">Info</a></li>
+        <li><a data-toggle="tab" href="#sectionC">TAP Output</a></li>
         <li><a data-toggle="tab" href="#sectionA">Documentation</a></li>
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
@@ -42,6 +43,8 @@ $(document).ready(function(){
             <pre>
  cpanm <%= $pkg %>
  swat  <%= $pkg %></pre>
+        </div>
+        <div id="sectionC" class="tab-pane fade">
             <%== "<h3>TAP Output</h3><pre>$tap_out</pre>" if $has_tap_out == 1 =%>
         </div>
         <div id="sectionA" class="tab-pane fade in active">

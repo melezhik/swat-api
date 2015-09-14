@@ -4,4 +4,5 @@ swat::lighttpd
 CGI
 DBI
 Moose
+swat::starman
 

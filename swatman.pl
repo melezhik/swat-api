@@ -125,9 +125,9 @@ sub _save_meta_to_cache {
         $meta->{'has_tap_out'} = 1;
         $cache->set($pkg.'::has_tap_out', 1);
 
-        open F, $tap_f or die $!;
-        my $tout = join "", <F>;
-        close F;
+        open my $tf , $tap_f or die $!;
+        my $tout = join "", <$tf>;
+        close $tf;
 
         $meta->{'tap_out'} = $tout;
         $cache->set($pkg.'::tap_out', $tout);

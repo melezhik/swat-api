@@ -32,6 +32,12 @@ $(document).ready(function(){
     </ul>
     <div class="tab-content">
         <div id="sectionB" class="tab-pane fade">
+            <h3>Summary</h3>
+            <pre>
+ Name: <strong><%= $name %></strong>
+ Version: <strong><%= $version %></strong>
+ Author: <strong><a href="mailto:<%= join "", @{$email} %>"><%= $author  %></a></strong>
+            </pre>
             <h3>Usage</h3>
             <pre>
  cpanm <%= $pkg %>

@@ -100,7 +100,7 @@ sub _save_meta_to_cache {
 
     my $meta = {
         name            => $pkg ,
-        author          => $cache->get($pkg.'::name')       || $a->name,
+        author          => $cache->get($pkg.'::author')     || $a->name,
         email           => $cache->get($pkg.'::email')      || $a->email,
         version         => $cache->get($pkg.'::version')    || $m->version,
         release         => $cache->get($pkg.'::release')    || $m->release,

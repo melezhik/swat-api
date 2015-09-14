@@ -2,6 +2,7 @@
 
 use strict;
 use Mojolicious::Lite;
+use Mojo::Date;
 
 use CHI;
 use WWW::Mechanize::Cached;
@@ -106,9 +107,10 @@ sub _save_meta_to_cache {
         release         => $cache->get($pkg.'::release')    || $m->release,
         info            => $cache->get($pkg.'::info')       || $m->abstract,
         pod_html        => $cache->get($pkg.'::pod_html')   || $m->pod('html'),
-        date            => $cache->get($pkg.'::date')       || $m->date,
+        date            => $cache->get($pkg.'::date')       || Mojo::Date->new($m->date)->to_string,
         dist            => $cache->get($pkg.'::dist')       || $m->distribution,
         doc             => $cache->get($pkg.'::doc')        || $m->pod('html'),
+        gravatar_url    => $cache->get($pkg.'::gravatar_url')  || $a->gravatar_url,
     };
 
 

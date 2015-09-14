@@ -11,7 +11,7 @@ use Data::Dumper;
 
 plugin 'BootstrapHelpers';
 
-get '/' => 'search_form';
+get '/' => 'home_page';
    
 get '/search' => sub {
 
@@ -93,64 +93,9 @@ get '/info/:pkg' => sub {
     
     my $m = $meta_client->module($pkg);
 
+    $c->stash('pkg' => $pkg );
     $c->stash('doc' => $m->pod('html'));
 
 } => 'pkg.info';
 
-helper app_header => sub {
-    qq{<head><title>Swatman - Swat Packages Repository</title></head>}
-};
-
 app->start;
-__DATA__
-
-@@ search_form.html.ep
-%= bootstrap 'all'
-%== app_header
-    
-<div class="panel-body">
-    <form method="GET" action="/search">
-        <div class="form-group">
-            <label for="search_query">Find Swat Package</label>
-            <input type="text" class="form-control" name="search_query">
-        </div>
-        <button type="submit" class="btn btn-primary">Go</button>
-    </form>
-</div>
-
-@@ search_results.html.ep
-%= bootstrap 'all'
-%== app_header
-
-
-    <div class="panel panel-default">
-        <div class="panel-body">Packages found: <strong><%= $count  %></strong></div>
-    </div>
-    <% if ($count) { %>
-    <table class="table">
-    <thead>
-        <tr>
-            <th>package</th>
-            <th>info</th>
-            <th>install</th>
-            <th>author</th>
-        </tr>
-    </thead>
-    <tbody>
-    <% foreach my $p (@{$list}) { %>
-    <tr>
-        <td><a href="/info/<%= $p->{name} %>"><%= $p->{release}  %></a></td>
-        <td><%= $p->{info} %></td>
-        <td><span class="label label-default">cpanm <%= $p->{name} %></span></td>
-        <td><a href="mailto:<%= join "", @{$p->{email}} %>"><%= $p->{author}  %></a></td>
-    </tr>
-    <% } %>
-    <tbody>
-    </table>
-    <% } %>
-
-<!--
-    Debug Info
-    Packages found:<%= $count  %>
--->
-

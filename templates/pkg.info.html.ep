@@ -1,11 +1,12 @@
 %= bootstrap 'all'
-%== app_header
+%== include 'app_header'
+%== include 'pkg.search.form'
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    $("#myTab li:eq(1) a").tab('show');
+    $("#myTab li:eq(0) a").tab('show');
 });
 </script>
 <style type="text/css">
@@ -13,12 +14,14 @@ $(document).ready(function(){
         margin: 20px;
     }
 </style>
-</head>
-<body>
+
+
+%= include 'app_header'
+
 <div class="bs-example">
     <ul class="nav nav-tabs" id="myTab">
+        <li><a data-toggle="tab" href="#sectionB">Usage</a></li>
         <li><a data-toggle="tab" href="#sectionA">Documentation</a></li>
-        <li><a data-toggle="tab" href="#sectionB">Section B</a></li>
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -28,13 +31,16 @@ $(document).ready(function(){
         </li>
     </ul>
     <div class="tab-content">
+        <div id="sectionB" class="tab-pane fade">
+            <h3>Usage</h3>
+            <pre>
+    cpanm <%= $pkg %>
+    swat  <%= $pkg %></pre>
+            <h3>TAP Output</h3>
+        </div>
         <div id="sectionA" class="tab-pane fade in active">
             <h3>Documentation</h3>
             <%== $doc %>
-        </div>
-        <div id="sectionB" class="tab-pane fade">
-            <h3>Section B</h3>
-            <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
         </div>
         <div id="dropdown1" class="tab-pane fade">
             <h3>Dropdown 1</h3>

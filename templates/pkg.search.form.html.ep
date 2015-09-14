@@ -1,0 +1,10 @@
+<div class="panel-body">
+    <form method="GET" action="/search">
+        <div class="form-group">
+            <label for="search_query">Find Swat Package</label>
+            <input type="text" class="form-control" name="search_query">
+        </div>
+        <button type="submit" class="btn btn-primary">Go</button>
+    </form>
+</div>
+

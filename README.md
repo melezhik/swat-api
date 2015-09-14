@@ -24,7 +24,7 @@
 
     # run swatman server
 
-    $ swatman -d
+    $ morbo swatman.pl
 
 # HOME PAGE
 

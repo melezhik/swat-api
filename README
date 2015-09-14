@@ -24,7 +24,7 @@ INSTALL
 USAGE
         # run swatman server
 
-        $ swatman -d
+        $ morbo swatman.pl
 
 HOME PAGE
     https://github.com/melezhik/swatman

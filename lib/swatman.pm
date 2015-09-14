@@ -54,7 +54,7 @@ comments
 
     # run swatman server
 
-    $ swatman -d
+    $ morbo swatman.pl
 
 
 =head1 HOME PAGE

@@ -19,7 +19,6 @@ get '/search' => sub {
 
     my $sq = $c->param('search_query');
 
-    my $cache = CHI->new( driver => 'File', global => 1, root_dir => "$ENV{HOME}/.swatman/cache/metacpan" );
 
     open F, "pkg.list" or die $!;
 
@@ -40,9 +39,11 @@ get '/search' => sub {
     
             eval {
 
+                my $cache = _metacpan_cache();
+
                 my $pkg_cached = $cache->get($pkg);
-    
                 app->log->debug("$pkg cached: ".($pkg_cached ? 'YES' : 'NO' ));
+
                 my $m = $meta_client->module($pkg)   unless $pkg_cached;
                 my $a = $meta_client->author($m->author) unless $pkg_cached;
 
@@ -55,6 +56,7 @@ get '/search' => sub {
                     email           => $cache->get($pkg.'::email')      || $a->email,
                     release         => $cache->get($pkg.'::release')    || $m->release,
                     info            => $cache->get($pkg.'::info')       || $m->abstract,
+                    pod_html        => $cache->get($pkg.'::pod_html')   || $m->pod('html')
                 };
                 unless ($pkg_cached) {   
                     for my $k (keys %$aa){
@@ -90,12 +92,26 @@ get '/info/:pkg' => sub {
     my $pkg = $c->stash('pkg');
 
     my $meta_client = MetaCPAN::Client->new();
-    
-    my $m = $meta_client->module($pkg);
+
+    my $cache = _metacpan_cache();
+
+    my $pkg_cached = $cache->get($pkg);
+
+    app->log->debug("$pkg cached: ".($pkg_cached ? 'YES' : 'NO' ));
+
+    my $m = $meta_client->module($pkg) unless $pkg_cached;
 
     $c->stash('pkg' => $pkg );
-    $c->stash('doc' => $m->pod('html'));
+    $c->stash('doc' => $cache->get($pkg.'::pod_html') || $m->pod('html'));
 
 } => 'pkg.info';
 
+
+sub _metacpan_cache {
+
+    CHI->new( driver => 'File', global => 1, root_dir => "$ENV{HOME}/.swatman/cache/metacpan" );
+
+}
+
 app->start;
+

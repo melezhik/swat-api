@@ -18,9 +18,10 @@ $(document).ready(function(){
 
 %= include 'app_header'
 
+<h1><%= $dist %></h1>
 <div class="bs-example">
     <ul class="nav nav-tabs" id="myTab">
-        <li><a data-toggle="tab" href="#sectionB">Usage</a></li>
+        <li><a data-toggle="tab" href="#sectionB">Info</a></li>
         <li><a data-toggle="tab" href="#sectionA">Documentation</a></li>
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
@@ -36,7 +37,7 @@ $(document).ready(function(){
             <pre>
     cpanm <%= $pkg %>
     swat  <%= $pkg %></pre>
-            <h3>TAP Output</h3>
+            <%== "<h3>TAP Output</h3><pre>$tap_out</pre>" if $has_tap_out == 1 =%>
         </div>
         <div id="sectionA" class="tab-pane fade in active">
             <h3>Documentation</h3>

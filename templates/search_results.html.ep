@@ -10,17 +10,19 @@
     <thead>
         <tr>
             <th>package</th>
+            <th>version</th>
+            <th>date</th>
             <th>info</th>
-            <th>install</th>
             <th>author</th>
         </tr>
     </thead>
     <tbody>
     <% foreach my $p (@{$list}) { %>
     <tr>
-        <td><a href="/info/<%= $p->{name} %>"><%= $p->{release}  %></a></td>
+        <td><a href="/info/<%= $p->{name} %>"><%= $p->{dist}  %></a></td>
+        <td><%= $p->{version} %></td>
+        <td><%= $p->{date} %></td>
         <td><%= $p->{info} %></td>
-        <td><span class="label label-default">cpanm <%= $p->{name} %></span></td>
         <td><a href="mailto:<%= join "", @{$p->{email}} %>"><%= $p->{author}  %></a></td>
     </tr>
     <% } %>

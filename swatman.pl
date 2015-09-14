@@ -35,42 +35,14 @@ get '/search' => sub {
         if ($pkg =~ $re){
             
             app->log->debug("pkg $pkg is listed");
-            my $meta_client = MetaCPAN::Client->new();
+
     
             eval {
-
-                my $cache = _metacpan_cache();
-
-                my $pkg_cached = $cache->get($pkg);
-                app->log->debug("$pkg cached: ".($pkg_cached ? 'YES' : 'NO' ));
-
-                my $m = $meta_client->module($pkg)   unless $pkg_cached;
-                my $a = $meta_client->author($m->author) unless $pkg_cached;
-
-                #my $pod_cut = join "\n", ((split "\n", $m->pod())[0..5]);
-
-
-                push @list, my $aa = {
-                    name            => $pkg ,
-                    author          => $cache->get($pkg.'::name')       || $a->name,
-                    email           => $cache->get($pkg.'::email')      || $a->email,
-                    release         => $cache->get($pkg.'::release')    || $m->release,
-                    info            => $cache->get($pkg.'::info')       || $m->abstract,
-                    pod_html        => $cache->get($pkg.'::pod_html')   || $m->pod('html')
-                };
-                unless ($pkg_cached) {   
-                    for my $k (keys %$aa){
-                        app->log->debug("set cache for ".( $pkg.'::'.$k  ));
-                        $cache->set($pkg.'::'.$k , $aa->{$k}||'?');
-                    }
-                    $cache->set( $pkg, 1);
-                }
+                push @list, (_save_meta_to_cache($c, $pkg));                
             };
-            app->log->debug("$pkg found on cpanmeta");
-    
             if ($@){
-                app->log->error("cpanmeta client error: $@");
-                app->log->error("$pkg not found on cpanmeta");
+                app->log->error("metacpan client error: $@");
+                app->log->error("$pkg failed to download from metacpan");
                 # TODO: handle cpanmeta related exeptions here
             }
     
@@ -91,18 +63,12 @@ get '/info/:pkg' => sub {
     my $c = shift;
     my $pkg = $c->stash('pkg');
 
-    my $meta_client = MetaCPAN::Client->new();
+    my $d = _save_meta_to_cache($c, $pkg);                
 
-    my $cache = _metacpan_cache();
-
-    my $pkg_cached = $cache->get($pkg);
-
-    app->log->debug("$pkg cached: ".($pkg_cached ? 'YES' : 'NO' ));
-
-    my $m = $meta_client->module($pkg) unless $pkg_cached;
-
-    $c->stash('pkg' => $pkg );
-    $c->stash('doc' => $cache->get($pkg.'::pod_html') || $m->pod('html'));
+    for my $k (keys %$d) {
+        $c->stash( $k => $d->{$k});
+    }
+    
 
 } => 'pkg.info';
 
@@ -111,6 +77,75 @@ sub _metacpan_cache {
 
     CHI->new( driver => 'File', global => 1, root_dir => "$ENV{HOME}/.swatman/cache/metacpan" );
 
+}
+
+sub _save_meta_to_cache {
+
+    my $c = shift;
+    my $pkg = shift;
+
+    my $cache = _metacpan_cache($pkg);
+
+    $c->stash('pkg' => $pkg );
+
+    my $meta_client = MetaCPAN::Client->new();
+
+    my $pkg_cached = $cache->get($pkg);
+
+    app->log->debug("$pkg cached: ".($pkg_cached ? 'YES' : 'NO' ));
+
+    my $m = $meta_client->module($pkg)   unless $pkg_cached;
+    my $a = $meta_client->author($m->author) unless $pkg_cached;
+
+
+    my $meta = {
+        name            => $pkg ,
+        author          => $cache->get($pkg.'::name')       || $a->name,
+        email           => $cache->get($pkg.'::email')      || $a->email,
+        version         => $cache->get($pkg.'::version')    || $m->version,
+        release         => $cache->get($pkg.'::release')    || $m->release,
+        info            => $cache->get($pkg.'::info')       || $m->abstract,
+        pod_html        => $cache->get($pkg.'::pod_html')   || $m->pod('html'),
+        date            => $cache->get($pkg.'::date')       || $m->date,
+        dist            => $cache->get($pkg.'::dist')       || $m->distribution,
+        doc             => $cache->get($pkg.'::doc')        || $m->pod('html'),
+    };
+
+
+    unless ($pkg_cached) {   
+        for my $k (keys %$meta){
+            app->log->debug("set cache for ".( $pkg.'::'.$k  ));
+            $cache->set($pkg.'::'.$k , $meta->{$k}||'?');
+        }
+        $cache->set( $pkg, 1);
+    }
+
+    my $tap_f = "tap_samples/".($cache->get($pkg.'::dist')).'.txt';
+    if (-e  $tap_f ){
+        $meta->{'has_tap_out'} = 1;
+        $cache->set($pkg.'::has_tap_out', 1);
+
+        $meta->{'tap_out'} = 'HELLO';
+        open F, $tap_f or die $!;
+        $cache->set($pkg.'::tap_out', (join "", <F>));
+        close F;
+
+        app->log->debug("set cache for has_tap_out to 1");
+
+    }else{
+        $meta->{'has_tap_out'} = 0;
+        $cache->set($pkg.'::has_tap_out', 0);
+
+        $meta->{'tap_out'} = '';
+        $cache->set($pkg.'::tap_out', '');
+
+        app->log->debug("set cache for has_tap_out to 0");
+        
+    }
+
+    app->log->debug("$pkg data downloaded from metacpan") unless $pkg_cached;
+
+    return $meta
 }
 
 app->start;

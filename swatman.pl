@@ -125,10 +125,12 @@ sub _save_meta_to_cache {
         $meta->{'has_tap_out'} = 1;
         $cache->set($pkg.'::has_tap_out', 1);
 
-        $meta->{'tap_out'} = 'HELLO';
         open F, $tap_f or die $!;
-        $cache->set($pkg.'::tap_out', (join "", <F>));
+        my $tout = join "", <F>;
         close F;
+
+        $meta->{'tap_out'} = $tout;
+        $cache->set($pkg.'::tap_out', $tout);
 
         app->log->debug("set cache for has_tap_out to 1");
 

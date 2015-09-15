@@ -1,0 +1,29 @@
+%= bootstrap 'all'
+%== include 'app_header'
+
+<div class="panel panel-default">
+    <div class="panel-heading">Add package to swatpm.org</div>
+    <div class="panel-body">
+    These are step you should perform:
+    <ul>
+    <li>
+        Create swat test suite. See <a href="https://github.com/melezhik/swat"> swat docs</a> how to do this.
+    </li>
+    <li>
+        Package swat test suite into cpan module distribution. See <a href="https://github.com/melezhik/swat#swat-packages"> swat docs</a> how to do this.
+    </li>
+    <li>
+        Upload swat package to CPAN.
+    </li>
+    <li>
+        Create a pull request or issue on <a href="https://github.com/melezhik/swat">https://github.com/melezhik/swat</a>
+        to let us know about your swat package <br>
+        and if everything is fine we will list it to swatpm.org ASAP.
+    </li>
+    </ul>
+    </div>
+</div>
+
+
+
+

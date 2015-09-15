@@ -15,6 +15,8 @@ plugin 'BootstrapHelpers';
 get '/' => 'home_page';
 
 get '/about' => 'about_page';
+
+get '/add-pkg' => 'add_pkg_page';
    
 get '/search' => sub {
 

@@ -2,4 +2,8 @@ swat::nginx
 swat::dancer
 swat::lighttpd
 swat::starman
+swat::django
+swat::zendesk
+swat::pintod
+swat::mongodb
 

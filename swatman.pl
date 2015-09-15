@@ -5,8 +5,6 @@ use Mojolicious::Lite;
 use Mojo::Date;
 
 use CHI;
-use WWW::Mechanize::Cached;
-use HTTP::Tiny::Mech;
 use MetaCPAN::Client;
 use Data::Dumper;
 

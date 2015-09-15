@@ -21,9 +21,9 @@
         they are CPAN modules. End user install swat packages as usual CPAN modules using various CPAN clients.
     </li>
     <li>
-        <q><strong>If swatpm.org retrieve all data from CPAN, why I'd better not go to CPAN directly ?</strong></q><br>
+        <q><strong>If swatpm.org retrieve all the data from CPAN, would not I be better go to CPAN directly ?</strong></q><br>
         Swatpm.org lists not all CPAN modules, but only swat packages. It is considered as entry point for people looking for
-        a certain swat packages, with swatpm.org it is much simpler and also provides some extra data not stored at CPAN.
+        a certain swat packages. With swatpm.org it is much simpler to do this. Swatpm.org provides some extra information not stored at CPAN as well.
     </li>
     </ul>
     </div>

@@ -1,0 +1,34 @@
+%= bootstrap 'all'
+%== include 'app_header'
+
+<div class="panel panel-default">
+    <div class="panel-heading">Frequently Asked Questions</div>
+    <div class="panel-body">
+    These are possible questions people could ask related to swatpm.org:
+    <ul>
+    <li>
+        <q><strong>Generally what swat is?</strong></q><br>
+        Swat is perl/bash DSL to rapidly create web application tests. Go to <a href="https://github.com/melezhik/swat"> swat project</a> to get more on this.
+    </li>
+    <li>
+        <q><strong>Generally what swat packages are ?</strong></q><br>
+        Swap packages are portable swat tests. One may distribute swat package as usual CPAN module.
+        Go to <a href="https://github.com/melezhik/swat#swat-packages"> swat project, section {swat packages}</a> to get more on this.
+    </li>
+    <li>
+        <q><strong>Is swatpm.org instead of CPAN ?</strong></q><br>
+        Definitely not. Swatpm.org <i>relies</i> on <a href="http://metacpan.org/">metacpan API</a> to retrieve swat packages data, as
+        they are CPAN modules. End user install swat packages as usual CPAN modules using various CPAN clients.
+    </li>
+    <li>
+        <q><strong>If swatpm.org retrieve all data from CPAN, why I'd better not go to CPAN directly ?</strong></q><br>
+        Swatpm.org lists not all CPAN modules, but only swat packages. It is considered as entry point for people looking for
+        a certain swat packages, with swatpm.org it is much simpler and also provides some extra data not stored at CPAN.
+    </li>
+    </ul>
+    </div>
+</div>
+
+
+
+

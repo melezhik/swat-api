@@ -1,8 +1,5 @@
 swat::nginx
 swat::dancer
 swat::lighttpd
-CGI
-DBI
-Moose
 swat::starman
 

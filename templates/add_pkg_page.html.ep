@@ -4,7 +4,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">Add package to swatpm.org</div>
     <div class="panel-body">
-    These are step you should perform:
+    These are simple steps you should perform:
     <ul>
     <li>
         Create swat test suite. See <a href="https://github.com/melezhik/swat"> swat docs</a> how to do this.

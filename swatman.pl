@@ -17,6 +17,8 @@ get '/' => 'home_page';
 get '/about' => 'about_page';
 
 get '/add-pkg' => 'add_pkg_page';
+
+get '/faq' => 'faq_page';
    
 get '/search' => sub {
 
@@ -24,6 +26,7 @@ get '/search' => sub {
 
     my $sq = $c->param('search_query');
 
+    $c->stash(query => $sq);
 
     open F, "pkg.list" or die $!;
 

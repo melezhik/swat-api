@@ -1,5 +1,5 @@
 %= bootstrap 'all'
-%== include 'app.header'
+%== include 'app_header'
 %== include 'pkg.search.form'
 
     <div class="panel panel-default">

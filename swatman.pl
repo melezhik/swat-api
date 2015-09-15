@@ -13,6 +13,8 @@ use Data::Dumper;
 plugin 'BootstrapHelpers';
 
 get '/' => 'home_page';
+
+get '/about' => 'about_page';
    
 get '/search' => sub {
 

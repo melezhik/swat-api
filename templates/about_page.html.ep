@@ -1,0 +1,25 @@
+%= bootstrap 'all'
+%== include 'app_header'
+
+<div class="panel panel-default">
+    <div class="panel-heading">About swatpm.org</div>
+    <div class="panel-body">
+    <p>
+    Swatpm.org is a <strong>official <a href="https://github.com/melezhik/swat">swat</a> packages repository</strong>.<br>
+    You can <a href="/">search</a> available swat packages. <br>
+    Or <a href="/add-pkg">add</a> existed swat package to the repository listing.<br>
+    Comments and feedback are welcome and could be sent to <i>melezhik _at_ gmail dot com</i>.<br>
+    Happy testing with swat!
+    </p>
+    <p>
+    <br>
+    ---
+    <br>
+    Alexey Melezhik. The author of swat engine.
+    </p>
+    </div>
+</div>
+
+
+
+

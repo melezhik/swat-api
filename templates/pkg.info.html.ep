@@ -15,9 +15,6 @@ $(document).ready(function(){
     }
 </style>
 
-
-%= include 'app_header'
-
 <div class="bs-example">
     <ul class="nav nav-tabs" id="myTab">
         <li><a data-toggle="tab" href="#sectionB">Info</a></li>

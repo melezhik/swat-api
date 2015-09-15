@@ -1,5 +1,3 @@
-bin/foo.pl
-bin/swatman.pl
 inc/Module/Install.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm
@@ -17,12 +15,14 @@ MYMETA.yml
 pkg.list
 README
 README.md
-search_form
-sub
 swat.my
+swatman.pl
 t/00.t
 t/:search/get.txt
 t/:search/swat.ini
 t/get.txt
 t/host
 t/swat.ini
+tap_samples/swat-dancer.txt
+tap_samples/swat-nginx.txt
+tap_samples/swat-starman.txt

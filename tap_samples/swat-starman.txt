@@ -1,25 +1,28 @@
 /home/vagrant/.swat/reports/127.0.0.1:5000/chunked_req/00.post.t ..... 
 ok 1 - run plackup -server Starman -D --pid /tmp/app.pid --path /chunked_req --access-log /tmp/access.log  /usr/local/share/perl/5.20.2/auto/share/module/swat-starman/chunked_req/app.psgi
 ok 2 - successful response from POST 127.0.0.1:5000/chunked_req
-ok 3 - POST /chunked_req returns 200 OK
-ok 4 - POST /chunked_req returns X-Content-Length
-ok 5 - POST /chunked_req returns X-Content-Length: 1024
-1..5
+ok 3 - data file: /home/vagrant/.swat/reports/127.0.0.1:5000//chunked_req/content.POST.txt created
+ok 4 - POST /chunked_req returns 200 OK
+ok 5 - POST /chunked_req returns X-Content-Length
+ok 6 - POST /chunked_req returns X-Content-Length: 1024
+1..6
 ok
 /home/vagrant/.swat/reports/127.0.0.1:5000/chunked_zero_length/00.t .. 
 ok 1 - run plackup -server Starman -D --pid /tmp/app.pid --path /chunked_zero_length --access-log /tmp/access.log  /usr/local/share/perl/5.20.2/auto/share/module/swat-starman/chunked_zero_length/app.psgi
 ok 2 - successful response from GET 127.0.0.1:5000/chunked_zero_length
-ok 3 - GET /chunked_zero_length returns 200 OK
-ok 4 - GET /chunked_zero_length returns ContentAgain
-1..4
+ok 3 - data file: /home/vagrant/.swat/reports/127.0.0.1:5000//chunked_zero_length/content.GET.txt created
+ok 4 - GET /chunked_zero_length returns 200 OK
+ok 5 - GET /chunked_zero_length returns ContentAgain
+1..5
 ok
 /home/vagrant/.swat/reports/127.0.0.1:5000/findbin/00.t .............. 
 ok 1 - run plackup -server Starman -D --pid /tmp/app.pid --path /findbin --access-log /tmp/access.log  /usr/local/share/perl/5.20.2/auto/share/module/swat-starman/findbin/app.psgi
 ok 2 - successful response from GET 127.0.0.1:5000/findbin
-ok 3 - GET /findbin returns 200 OK
-ok 4 - GET /findbin returns /usr/local/share/perl/5.20.2/auto/share/module/swat-starman/findbin
-1..4
+ok 3 - data file: /home/vagrant/.swat/reports/127.0.0.1:5000//findbin/content.GET.txt created
+ok 4 - GET /findbin returns 200 OK
+ok 5 - GET /findbin returns /usr/local/share/perl/5.20.2/auto/share/module/swat-starman/findbin
+1..5
 ok
 All tests successful.
-Files=3, Tests=13,  1 wallclock secs ( 0.01 usr  0.00 sys +  0.11 cusr  0.03 csys =  0.15 CPU)
+Files=3, Tests=16,  1 wallclock secs ( 0.02 usr  0.00 sys +  0.14 cusr  0.01 csys =  0.17 CPU)
 Result: PASS

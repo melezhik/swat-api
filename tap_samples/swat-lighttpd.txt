@@ -1,0 +1,21 @@
+/home/vagrant/.swat/reports/127.0.0.1/:static/00.t .. 
+ok 1 - successful response from GET 127.0.0.1:8000/:static
+ok 2 - data file: /home/vagrant/.swat/reports/127.0.0.1//:static/content.GET.txt created
+ok 3 - GET /:static returns 200 OK
+ok 4 - GET /:static returns Content-Type: text/plain
+ok 5 - GET /:static returns HELLO2
+ok 6 - GET /:static returns WORLD2
+ok 7 - GET /:static returns data matching Server:\s+lighttpd
+1..7
+ok
+/home/vagrant/.swat/reports/127.0.0.1/fastcgi/00.t .. 
+ok 1 - run plackup --server FCGI --port 9000 --pid /tmp/app.pid -D --host 127.0.0.1 -e 'sub { return [ 200, [ ], [ qq{HELLO FASTCGI 1442404176} ] ] } '
+ok 2 - successful response from GET 127.0.0.1:8000/fastcgi
+ok 3 - data file: /home/vagrant/.swat/reports/127.0.0.1//fastcgi/content.GET.txt created
+ok 4 - GET /fastcgi returns 200 OK
+ok 5 - GET /fastcgi returns HELLO FASTCGI 1442404176
+1..5
+ok
+All tests successful.
+Files=2, Tests=12,  0 wallclock secs ( 0.01 usr  0.00 sys +  0.03 cusr  0.00 csys =  0.04 CPU)
+Result: PASS

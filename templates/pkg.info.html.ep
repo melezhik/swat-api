@@ -33,6 +33,8 @@ $(document).ready(function(){
  ---   
  <img src="<%= $gravatar_url %>" class="img-rounded" alt="Author Gravatar">
             </pre>
+            <h3>Abstract</h3>
+            <%= $info %>    
             <h3>Install</h3>
             <code>$ cpanm <%= $pkg %></code>
             <h3>Run tests</h3>

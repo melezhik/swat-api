@@ -1,5 +1,4 @@
 <div class="container">
-<div class="panel-body">
     <form method="GET" action="/search">
         <div class="form-group">
             <label for="search_query">Find Swat Package</label>
@@ -7,6 +6,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Go</button>
     </form>
-</div>
 </div>
 

@@ -2,33 +2,18 @@
 %== include 'app_header'
 %== include 'pkg.search.form'
 
-    <div class="container">
-    <div class="panel panel-default">
-        <div class="panel-body">Query: <%= $query %>. Packages found: <strong><%= $count  %></strong></div>
-    </div>
+
+<div class="container">
     <% if ($count) { %>
-    <table class="table">
-    <thead>
-        <tr>
-            <th>package</th>
-            <th>version</th>
-            <th>date</th>
-            <th>author</th>
-        </tr>
-    </thead>
-    <tbody>
     <% foreach my $p (@{$list}) { %>
-    <tr>
-        <td><a href="/info/<%= $p->{name} %>"><%= $p->{dist}  %></a></td>
-        <td><%= $p->{version} %></td>
-        <td><%= $p->{date} %></td>
-        <td><a href="mailto:<%= join "", @{$p->{email}} %>"><%= $p->{author}  %></a></td>
-    </tr>
+    <strong><a href="/info/<%= $p->{name} %>"><%= $p->{dist}  %></a></strong><br>
+    <i><%= $p->{info} %></i> <br>
+    <%= $p->{release} %> - <%= $p->{date} %> - <a href="mailto:<%= join "", @{$p->{email}} %>"><%= $p->{author}  %></a>
+    <hr>
     <% } %>
-    <tbody>
-    </table>
     <% } %>
-    </div>
+</div>
+
 <!--
     Debug Info
     Packages found:<%= $count  %>

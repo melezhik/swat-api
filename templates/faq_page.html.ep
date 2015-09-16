@@ -1,6 +1,7 @@
 %= bootstrap 'all'
 %== include 'app_header'
 
+<div class="container">
 <div class="panel panel-default">
     <div class="panel-heading">Frequently Asked Questions</div>
     <div class="panel-body">
@@ -22,11 +23,20 @@
     </li>
     <li>
         <q><strong>If swatpm.org retrieve all the data from CPAN, would not I be better go to CPAN directly ?</strong></q><br>
-        Swatpm.org lists not all CPAN modules, but only swat packages. It is considered as entry point for people looking for
-        a certain swat packages. With swatpm.org it is much simpler to do this. Swatpm.org provides some extra information not stored at CPAN as well.
+        Swatpm.org does not list all CPAN modules, but only swat packages.<br> 
+        It should be considered as entry point for people looking for 
+        a certain swat packages and swatpm.org simplifies this. <br> 
+        Also Swatpm.org provides some extra information for swat packages ( not stored at CPAN ).
+    </li>
+    <li>
+        <q><strong>What is TAP Output sometimes show at package info page?</strong></q><br>
+        As every swat package is a portable web tests suite all you do with is to run package's smoke test against web application. 
+        The test output is in <a href="http://testanything.org/">TAP</a> - "test anything protocol" - format.
+        Thus to say it shortly TAP output is an example of test report you get when run tests from swat package.
     </li>
     </ul>
     </div>
+</div>
 </div>
 
 

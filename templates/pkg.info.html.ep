@@ -15,6 +15,7 @@ $(document).ready(function(){
     }
 </style>
 
+<div class="container">
 <div class="bs-example">
     <ul class="nav nav-tabs" id="myTab">
         <li><a data-toggle="tab" href="#sectionB">Info</a></li>
@@ -33,11 +34,9 @@ $(document).ready(function(){
  <img src="<%= $gravatar_url %>" class="img-rounded" alt="Author Gravatar">
             </pre>
             <h3>Install</h3>
-            <pre>
- $ cpanm <%= $pkg %></pre>
+            <code>$ cpanm <%= $pkg %></code>
             <h3>Run tests</h3>
-            <pre>
- $ swat <%= $pkg %> {host} </pre>
+            <code>$ swat <%= $pkg %> {host} </code>
         </div>
         <div id="sectionC" class="tab-pane fade">
             <%== "<h3>TAP Output</h3><pre>$tap_out</pre>" if $has_tap_out == 1 =%>
@@ -47,5 +46,6 @@ $(document).ready(function(){
             <%== $doc %>
         </div>
     </div>
+</div>
 </div>
 

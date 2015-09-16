@@ -2,6 +2,7 @@
 %== include 'app_header'
 %== include 'pkg.search.form'
 
+    <div class="container">
     <div class="panel panel-default">
         <div class="panel-body">Query: <%= $query %>. Packages found: <strong><%= $count  %></strong></div>
     </div>
@@ -27,7 +28,7 @@
     <tbody>
     </table>
     <% } %>
-
+    </div>
 <!--
     Debug Info
     Packages found:<%= $count  %>

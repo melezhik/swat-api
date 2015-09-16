@@ -24,5 +24,6 @@ t/get.txt
 t/host
 t/swat.ini
 tap_samples/swat-dancer.txt
+tap_samples/swat-lighttpd.txt
 tap_samples/swat-nginx.txt
 tap_samples/swat-starman.txt

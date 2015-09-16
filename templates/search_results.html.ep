@@ -12,7 +12,7 @@
     <hr>
     <% } %>
     <% } else { %>
-    0 packages found
+    0 packages found.
     <% } %>
 </div>
 

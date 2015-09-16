@@ -11,6 +11,8 @@
     <%= $p->{release} %> - <%= $p->{date} %> - <a href="mailto:<%= join "", @{$p->{email}} %>"><%= $p->{author}  %></a>
     <hr>
     <% } %>
+    <% } else { %>
+    0 packages found
     <% } %>
 </div>
 

@@ -30,7 +30,7 @@
     </li>
     <li>
         <q><strong>What is TAP Output sometimes show at package info page?</strong></q><br>
-        As every swat package is a portable web tests suite all you do with is to run package's smoke test against web application. 
+        As every swat package is a portable web tests suite all you do with it is to run package's smoke test against a web application. 
         The test output is in <a href="http://testanything.org/">TAP</a> - "test anything protocol" - format.
         Thus to say it shortly TAP output is an example of test report you get when run tests from swat package.
     </li>

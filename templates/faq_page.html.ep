@@ -8,7 +8,7 @@
     These are possible questions people could ask related to swatpm.org:
     <ul>
     <li>
-        <q><strong>Generally what swat is?</strong></q><br>
+        <q><strong>Generally what swat is ?</strong></q><br>
         Swat is perl/bash DSL to rapidly create web application tests. Go to <a href="https://github.com/melezhik/swat"> swat project</a> to get more on this.
     </li>
     <li>
@@ -28,7 +28,7 @@
         Also Swatpm.org provides some extra information for swat packages ( not stored at CPAN ).
     </li>
     <li>
-        <q><strong>What is TAP Output sometimes show at package info page?</strong></q><br>
+        <q><strong>What is TAP Output sometimes show at package info page ?</strong></q><br>
         As every swat package is a portable web tests suite all you do with it is to run package's smoke test against a web application. 
         The test output is in <a href="http://testanything.org/">TAP</a> - "test anything protocol" - format.
         Thus to say it shortly TAP output is an example of test report you get when run tests from swat package.

@@ -26,10 +26,10 @@ $(document).ready(function(){
         <div id="sectionB" class="tab-pane fade">
             <h3>Summary</h3>
             <pre>
- Name    : <strong><%= $name %></strong>
- Version : <strong><%= $version %></strong>
- Date    : <strong><%= $date %></strong>
- Author  : <strong><a href="mailto:<%= join "", @{$email} %>"><%= $author  %></a></strong>
+ Name       : <strong><%= $name %></strong>
+ Version    : <strong><%= $version %></strong>
+ Date       : <strong><%= $date %></strong>
+ Author     : <strong><a href="mailto:<%= join "", @{$email} %>"><%= $author  %></a></strong>
  ---   
  <img src="<%= $gravatar_url %>" class="img-rounded" alt="Author Gravatar">
             </pre>

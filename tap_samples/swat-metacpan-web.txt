@@ -1,0 +1,35 @@
+/home/vagrant/.swat/reports/17158/00.GET.t ................ 
+ok 1 - successful response from GET https://metacpan.org/
+ok 2 - response saved to /home/vagrant/.swat/reports/17158/2.txt
+ok 3 - GET / returns 200 OK
+ok 4 - GET / returns Search the CPAN - metacpan.org
+1..4
+ok
+/home/vagrant/.swat/reports/17158/:find_module/00.POST.t .. 
+ok 1 - successful response from POST https://metacpan.org/:find_module
+ok 2 - response saved to /home/vagrant/.swat/reports/17158/4.txt
+ok 3 - POST /:find_module returns 200 OK
+ok 4 - POST /:find_module returns lib/swat.pm
+ok 5 - POST /:find_module matches name="release"\s+value="swat-(\d+\.\d+\.\d+)"
+1..5
+ok
+/home/vagrant/.swat/reports/17158/feed/recent/00.GET.t .... 
+ok 1 - successful response from GET https://metacpan.org/feed/recent
+ok 2 - response saved to /home/vagrant/.swat/reports/17158/5.txt
+ok 3 - GET /feed/recent returns 200 OK
+1..3
+ok
+/home/vagrant/.swat/reports/17158/recent/00.GET.t ......... 
+ok 1 - successful response from GET https://metacpan.org/recent
+ok 2 - response saved to /home/vagrant/.swat/reports/17158/3.txt
+ok 3 - GET /recent returns 200 OK
+ok 4 - GET /recent returns Recent - metacpan.org
+ok 5 - GET /recent returns | <small class="smaller">
+ok 6 - GET /recent matches | (\d+,\d+)
+ok 7 - GET /recent matches | results \((.*\))
+ok 8 - GET /recent returns | </small>
+1..8
+ok
+All tests successful.
+Files=4, Tests=20, 35 wallclock secs ( 0.02 usr  0.00 sys +  0.06 cusr  0.01 csys =  0.09 CPU)
+Result: PASS

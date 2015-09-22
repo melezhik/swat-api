@@ -6,4 +6,5 @@ swat::django
 swat::zendesk
 swat::pintod
 swat::mongodb
+swat::metacpan::web
 

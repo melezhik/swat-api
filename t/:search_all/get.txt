@@ -1,0 +1,4 @@
+200 OK
+regexp: Packages found:([1-9]+)
+code: note("pkg found: ".(capture()->[0]));
+code: cmp_ok(capture()->[0],'>',0,'more than zero packages found');

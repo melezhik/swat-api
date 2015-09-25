@@ -101,37 +101,58 @@ sub _save_meta_to_cache {
 
     app->log->debug("$pkg cached: ".($pkg_cached ? 'YES' : 'NO' ));
 
-    my $m = $meta_client->module($pkg)   unless $pkg_cached;
-    my $a = $meta_client->author($m->author) unless $pkg_cached;
-    my $r = $meta_client->release($m->distribution) unless $pkg_cached;
+    my $meta = {};
+    if ( $pkg_cached ){
 
+        $meta = {
+            name            => $pkg ,
+            author          => $cache->get($pkg.'::author'),
+            email           => $cache->get($pkg.'::email'),
+            version         => $cache->get($pkg.'::version'),
+            release         => $cache->get($pkg.'::release'),
+            info            => $cache->get($pkg.'::info'),
+            pod_html        => $cache->get($pkg.'::pod_html'),
+            date            => $cache->get($pkg.'::date'),
+            dist            => $cache->get($pkg.'::dist'),
+            doc             => $cache->get($pkg.'::doc'),
+            gravatar_url    => $cache->get($pkg.'::gravatar_url'),
+        };
+    
+    }else{
 
-    my $meta = {
-        name            => $pkg ,
-        author          => $cache->get($pkg.'::author')     || $a->name,
-        email           => $cache->get($pkg.'::email')      || $a->email,
-        version         => $cache->get($pkg.'::version')    || $m->version,
-        release         => $cache->get($pkg.'::release')    || $m->release,
-        info            => $cache->get($pkg.'::info')       || $r->abstract,
-        pod_html        => $cache->get($pkg.'::pod_html')   || $m->pod('html'),
-        date            => $cache->get($pkg.'::date')       || Time::Piece->strptime(Mojo::Date->new($m->date)->to_string)->strftime("%a, %d %b %Y"),
-        dist            => $cache->get($pkg.'::dist')       || $m->distribution,
-        doc             => $cache->get($pkg.'::doc')        || $m->pod('html'),
-        gravatar_url    => $cache->get($pkg.'::gravatar_url')  || $a->gravatar_url,
-    };
+        my $m = $meta_client->module($pkg);
+        my $a = $meta_client->author($m->author);
+        my $r = $meta_client->release($m->distribution);
 
-    use DateTime;
+        app->log->debug("$pkg meta data downloaded from metacpan");
 
-    unless ($pkg_cached) {   
+        $meta = {
+            name            => $pkg ,
+            author          => $a->name,
+            email           => $a->email,
+            version         => $m->version,
+            release         => $m->release,
+            info            => $r->abstract,
+            pod_html        => $m->pod('html'),
+            date            => Time::Piece->strptime(Mojo::Date->new($m->date)->to_string)->strftime("%a, %d %b %Y"),
+            dist            => $m->distribution,
+            doc             => $m->pod('html'),
+            gravatar_url    => $a->gravatar_url,
+        };
+
         for my $k (keys %$meta){
             app->log->debug("set cache for ".( $pkg.'::'.$k  ));
             $cache->set($pkg.'::'.$k , $meta->{$k}||'?');
         }
+
         $cache->set( $pkg, 1);
     }
 
+
     my $tap_f = "tap_samples/".($cache->get($pkg.'::dist')).'.txt';
+
     if (-e  $tap_f ){
+
         $meta->{'has_tap_out'} = 1;
         $cache->set($pkg.'::has_tap_out', 1);
 
@@ -145,6 +166,7 @@ sub _save_meta_to_cache {
         app->log->debug("set cache for has_tap_out to 1");
 
     }else{
+
         $meta->{'has_tap_out'} = 0;
         $cache->set($pkg.'::has_tap_out', 0);
 
@@ -155,7 +177,6 @@ sub _save_meta_to_cache {
         
     }
 
-    app->log->debug("$pkg data downloaded from metacpan") unless $pkg_cached;
 
     return $meta
 }

@@ -18,21 +18,28 @@ $(document).ready(function(){
 <div class="container">
 <div class="bs-example">
     <ul class="nav nav-tabs" id="myTab">
-        <li><a data-toggle="tab" href="#sectionB">Info</a></li>
-        <li><a data-toggle="tab" href="#sectionC">TAP Output</a></li>
+        <li><a data-toggle="tab" href="#sectionB">Summary</a></li>
         <li><a data-toggle="tab" href="#sectionA">Documentation</a></li>
+        <li><a data-toggle="tab" href="#sectionC">TAP</a></li>
     </ul>
     <div class="tab-content">
         <div id="sectionB" class="tab-pane fade">
-            <h3>Summary</h3>
-            <pre>
- Name       : <strong><%= $name %></strong>
- Version    : <strong><%= $version %></strong>
- Date       : <strong><%= $date %></strong>
- Author     : <strong><a href="mailto:<%= join "", @{$email} %>"><%= $author  %></a></strong>
- ---   
- <img src="<%= $gravatar_url %>" class="img-rounded" alt="Author Gravatar">
-            </pre>
+
+            <h1>Info</h1>
+
+            <h3>Package</h3>
+            <%= $name %>
+
+            <h3>Version</h3>
+            <%= $version %>
+
+            <h3>Date</h3>
+            <%= $date %>
+
+            <h3>Author</h3>
+            <a href="mailto:<%= join "", @{$email} %>"><%= $author  %></a>
+            <!-- <img src="<%= $gravatar_url %>" class="img-rounded" alt="Author Gravatar"> -->
+
             <h3>Abstract</h3>
             <%= $info %>    
             <h3>Install</h3>
@@ -40,12 +47,12 @@ $(document).ready(function(){
             <h3>Run tests</h3>
             <code>$ swat <%= $pkg %> {host} </code>
         </div>
-        <div id="sectionC" class="tab-pane fade">
-            <%== "<h3>TAP Output</h3><pre>$tap_out</pre>" if $has_tap_out == 1 =%>
-        </div>
-        <div id="sectionA" class="tab-pane fade in active">
-            <h3>Documentation</h3>
+        <div id="sectionA" class="tab-pane fade">
+            <h1>Documentation</h1>
             <%== $doc %>
+        </div>
+        <div id="sectionC" class="tab-pane fade">
+            <%== "<h1>TAP</h3><pre>$tap_out</pre>" if $has_tap_out == 1 =%>
         </div>
     </div>
 </div>

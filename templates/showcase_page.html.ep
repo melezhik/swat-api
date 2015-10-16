@@ -14,7 +14,7 @@
     </ul>
 
     <div>
-    This is list of swat tests compatible with the latest version of swat.
+    This is the list of swat tests compatible with the latest version of swat.
     Let me know if you need them being updated or changed for any reasons.
     </div>
 
@@ -28,13 +28,13 @@
 
 
     <div>
-    This is list of obsolte swat tests ( required an old version of swat ).
+    This is list of obsolte swat tests ( an old version of swat is required ).
     Let me know if you need them being "resurected" for any reasons.
     </div>
     
     <ul>
         
-        <li><strong>Dancer2</strong> - <a href="https://github.com/melezhik/swat-examples/tree/master/dancer">swat test suite for Dacer2 framework</a></li>
+        <li><strong>Dancer2</strong> - <a href="https://github.com/melezhik/swat-examples/tree/master/dancer">swat test suite for Dancer2 framework</a></li>
         <li><strong>Nginx</strong> - <a href="https://github.com/melezhik/swat-examples/tree/master/nginx">swat test suite for nginx web server </a></li>
         <li><strong>Lighttpd</strong> - <a href="https://github.com/melezhik/swat-examples/tree/master/lighttpd">swat test suite for lighttpd web server </a></li>
         <li><strong>Mongo DB http</strong> - <a href="https://github.com/melezhik/swat-examples/tree/master/swat/mongodb-http">swat test suite for mongo db http interface</a></li>

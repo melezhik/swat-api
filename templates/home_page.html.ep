@@ -1,4 +1,42 @@
 %= bootstrap 'all'
 %== include 'app_header'
-%== include 'pkg.search.form'
+
+<div class="panel panel-default">
+  <div class="panel-heading">Web Test Automation With Perl. 5 Minutes Tutorial.</div>
+  <div class="panel-body">
+    <strong># Define http resources</strong>
+    <pre>
+
+        mkdir foo/
+        mkdir -p bar/baz
+    </pre>
+    <strong># Define http methods</strong>
+    <pre>
+
+        touch foo/get.txt
+        touch foo/put.txt
+        touch bar/baz/post.txt
+    </pre>
+    <strong># Define tested hostname</strong>
+    <pre>
+
+        echo 'app.local:8080' >> host
+    </pre>
+    <strong># Define checklists</strong>
+    <pre>
+
+        echo 200 OK > foo/get.txt
+        echo 'Hello I am foo' >> foo/get.txt
+
+        echo 200 OK > foo/get.txt
+        echo 'Hello I am bar/baz' >> bar/baz.txt
+    </pre>
+    <strong># Run swat tests</strong>
+    <pre>
+        swat
+    </pre>
+  </div>
+  <div class="panel-footer">Do you want to know more ? - visit swat github pages - <a href="https://github.com/melezhik/swat<">https://github.com/melezhik/swat</a></div>
+</div>
+
 

@@ -1,8 +1,7 @@
 <ul class="nav nav-pills">
-    <li><a href="/">Search Pkg</a></li>
-    <li><a href="/add-pkg">Add Pkg</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/faq">FAQ</a></li>
+    <li><a href="/">::Home</a></li>
+    <li><a href="/showcase">::Who uses swat?</a></li>
+    <li><a href="/request">::Request a test automation</a></li>
 </ul>
 
 

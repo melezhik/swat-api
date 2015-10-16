@@ -1,0 +1,56 @@
+%= bootstrap 'all'
+%== include 'app_header'
+
+<div class="panel panel-success">
+  <div class="panel-heading">These are the projects depending on, using swat:</div>
+  <div class="panel-body">
+
+    <div>
+    This ia an "official" projects list:
+    </div>
+
+    <ul>
+        <li><strong>Metacpan</strong> - <a href="https://github.com/CPAN-API/metacpan-monitoring">https://github.com/CPAN-API/metacpan-monitoring</a></li>
+    </ul>
+
+    <div>
+    This is list of swat tests compatible with the latest version of swat.
+    Let me know if you need them being updated or changed for any reasons.
+    </div>
+
+    <ul>
+        <li><strong>Lacunaexpanse</strong> - <a href="https://github.com/melezhik/swat-lacuna-api">swat test suite for lacunaexpanse JSON/RPC API</a></li>
+        <li><strong>Nestoria</strong> - <a href="https://github.com/melezhik/WebService-Nestoria-Search/tree/master/swat-test">swat test suite for Nestoria public API</a></li>
+        <li><strong>API::Wunderlist</strong> - <a href="https://github.com/melezhik/API-Wunderlist/tree/master/swat-test">swat test suite for Perl 5 API wrapper for Wunderlist.com</a></li>
+
+    </ul>
+
+
+
+    <div>
+    This is list of obsolte swat tests ( required an old version of swat ).
+    Let me know if you need them being "resurected" for any reasons.
+    </div>
+    
+    <ul>
+        
+        <li><strong>Dancer2</strong> - <a href="https://github.com/melezhik/swat-examples/tree/master/dancer">swat test suite for Dacer2 framework</a></li>
+        <li><strong>Nginx</strong> - <a href="https://github.com/melezhik/swat-examples/tree/master/nginx">swat test suite for nginx web server </a></li>
+        <li><strong>Lighttpd</strong> - <a href="https://github.com/melezhik/swat-examples/tree/master/lighttpd">swat test suite for lighttpd web server </a></li>
+        <li><strong>Mongo DB http</strong> - <a href="https://github.com/melezhik/swat-examples/tree/master/swat/mongodb-http">swat test suite for mongo db http interface</a></li>
+        <li><strong>Pinto</strong> - <a href="https://github.com/melezhik/swat-examples/tree/master/swat/pintod">swat test suite for pintod API</a></li>
+        <li><strong>Django</strong> - <a href="https://github.com/melezhik/swat-examples/tree/master/swat/django">swat test suite for django framework</a></li>
+        <li><strong>Starman</strong> - <a href="https://github.com/melezhik/swat-examples/tree/master/swat/starman">swat test suite for starman web server</a></li>
+        <li><strong>Zendesk</strong> - <a href="https://github.com/melezhik/swat-examples/tree/master/swat/zendesk">swat test suite for zendesk application</a></li>
+
+    <ul>
+  </div>
+
+  </div>
+
+  <div class="panel-footer">
+     Want to request a <strong>test automation?</strong> - <a href="mailto:melezhik@gmail.com">write me!
+  </div>
+
+</div>
+

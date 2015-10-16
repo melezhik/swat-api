@@ -1,8 +1,8 @@
 %= bootstrap 'all'
 %== include 'app_header'
 
-<div class="panel panel-default">
-  <div class="panel-heading">Web Test Automation With Perl. 5 Minutes Tutorial.</div>
+<div class="panel panel-primary">
+  <div class="panel-heading">SWAT - Web Test Automation With Perl. 5 Minutes Tutorial.</div>
   <div class="panel-body">
     <strong># Define http resources</strong>
     <pre>
@@ -36,7 +36,11 @@
         swat
     </pre>
   </div>
-  <div class="panel-footer">Do you want to know more ? - visit swat github pages - <a href="https://github.com/melezhik/swat<">https://github.com/melezhik/swat</a></div>
+  <div class="panel-footer">
+     Want to request a <strong>test automation?</strong> - <a href="mailto:melezhik@gmail.com">write me!
+  </div>
 </div>
+
+
 
 

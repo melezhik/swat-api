@@ -10,7 +10,7 @@ get '/' => 'home_page';
 
 get '/showcase' => 'showcase_page';
 
-get '/request' => 'request_page';
+get '/doc' => 'doc_page';
 
 app->start;
 

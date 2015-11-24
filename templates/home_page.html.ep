@@ -36,11 +36,9 @@
         swat
     </pre>
   </div>
-  <div class="panel-footer">
-     Want to request a <strong>test automation?</strong> - <a href="mailto:melezhik@gmail.com">write me!
-  </div>
 </div>
 
 
+%== include 'app_footer'
 
 

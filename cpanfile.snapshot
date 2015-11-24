@@ -263,14 +263,6 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 6.30
       Moose 0
       parent 0
-  Cpanel-JSON-XS-3.0115
-    pathname: R/RU/RURBAN/Cpanel-JSON-XS-3.0115.tar.gz
-    provides:
-      Cpanel::JSON::XS 3.0115
-    requirements:
-      ExtUtils::MakeMaker 0
-      Pod::Text 2.08
-      Pod::Usage 1.33
   Data-OptList-0.109
     pathname: R/RJ/RJBS/Data-OptList-0.109.tar.gz
     provides:
@@ -1910,7 +1902,6 @@ DISTRIBUTIONS
       JSON::MaybeXS 1.003005
     requirements:
       Carp 0
-      Cpanel::JSON::XS 2.3310
       ExtUtils::CBuilder 0.27
       ExtUtils::MakeMaker 0
       File::Spec 0

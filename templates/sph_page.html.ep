@@ -1,0 +1,19 @@
+%= bootstrap 'all'
+%== include 'app_header'
+
+<div class="panel panel-primary"">
+  <div class="panel-heading">SparrowHub - SWAT plugins repository</div>
+  <div class="panel-body">
+
+    <a href="https://sparrowhub.org">SparrowHub</a> - is a central swat tests repository,
+    where you can find reusable swat tests. <br>
+
+    Read <a href="https://github.com/melezhik/sparrow">sparrow</a> project documentation to get
+    know how to create, install and run swat tests using sparrow.
+    
+  </div>
+</div>
+
+%== include 'app_footer'
+
+

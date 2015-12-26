@@ -8,7 +8,7 @@ plugin 'BootstrapHelpers';
 
 get '/' => 'home_page';
 
-get '/showcase' => 'showcase_page';
+get '/sparrowhub' => 'sph_page';
 
 get '/doc' => 'doc_page';
 

@@ -2,7 +2,7 @@
 %== include 'app_header'
 
 <div class="panel panel-primary">
-  <div class="panel-heading">SWAT Documentation.</div>
+  <div class="panel-heading">SWAT Documentation</div>
   <div class="panel-body">
     <ul>
         <li><a href="https://github.com/melezhik/swat">swat github project</a> - detailed documentation could be found here</li>

@@ -2,7 +2,7 @@
 %== include 'app_header'
 
 <div class="panel panel-primary">
-  <div class="panel-heading">SWAT - Web Test Automation With Perl. 5 Minutes Tutorial.</div>
+  <div class="panel-heading">SWAT - Web Test Automation With Perl. 5 Minutes Tutorial</div>
   <div class="panel-body">
     <strong># Define http resources</strong>
     <pre>
@@ -35,6 +35,7 @@
     <pre>
         swat
     </pre>
+    Read more on <a href="https://github.com/melezhik/swat">https://github.com/melezhik/swat</a>
   </div>
 </div>
 

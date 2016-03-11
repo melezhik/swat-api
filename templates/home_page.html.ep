@@ -95,11 +95,18 @@
     swat
     </pre>
     
-    <img src="/swat-run.png" style="max-width: 70%; height: auto; ">
+    <img src="/swat-run.png" style="max-width: 70%; height: auto; " border=1>
+    <br><br>
+    <ul>
 
-    <br>
+    <li>
+        This example could be downloaded from <a href="https://github.com/melezhik/swatpm-example">https://github.com/melezhik/swatpm-example</a>
+    </li>
+    <li>
+        Read more on <a href="https://github.com/melezhik/swat">https://github.com/melezhik/swat</a>
+    </li>
 
-    Read more on <a href="https://github.com/melezhik/swat">https://github.com/melezhik/swat</a>
+    <ul>
 
   </div>
 </div>

@@ -18,36 +18,29 @@
     $ echo '127.0.0.1:5000' > host
     </pre>
 
-    <strong># Define http resources</strong>
+    <strong># Define tests</strong>
 
     <pre>
 
-    $ mkdir hello         # /hello  
-    $ mkdir -p foo/bar    # /foo/bar
-    $ mkdir -p bar/baz    # /bar/baz
-    $ mkdir send_cookie   # /send_cookie
-    </pre>
+    # GET   /hello
+    $ touch hello/get.txt             
 
-    <strong># Define http methods</strong>
-
-    <pre>
-
-    $ touch hello/get.txt             # GET   /hello
-    $ touch foo/bar/get.txt           # GET   /foo/bar
-    $ touch bar/baz/post.txt          # POST  /bar/baz
-    $ touch send_cookie/post.txt      # POST  /send_cookie
-    </pre>
-
-    <strong># Define request parameters</strong>
-
-    <pre>
-
+    # GET   /foo/bar?greeting=hello1
+    $ touch foo/bar/get.txt
     $ echo curl_params="'-G -d greeting=hello1'" > foo/bar/swat.ini
+
+    # POST  /bar/baz  ( w/ params: greeting=hello2
+    $ touch bar/baz/post.txt          
     $ echo curl_params="'-d greeting=hello2'"    > bar/baz/swat.ini
+
+    # POST  /send_cookie ( w/ params: name=swat )
+    $ touch send_cookie/post.txt      
     $ echo curl_params="'-b name=swat'"          > send_cookie/swat.ini
+
     </pre>
 
     <strong># Define expected response</strong>
+
     <pre>
 
     # GET  /hello should succeed and return 'Hi there!'
@@ -73,7 +66,7 @@
     $ swat
     </pre>
     
-    <img src="/swat-run.png" style="max-width: 70%; height: auto; " border="10">
+    <img src="/swat-run.png" style="max-width: 70%; height: auto; border-color: yellow;" border="10">
     <br><br>
 
 

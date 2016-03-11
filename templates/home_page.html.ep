@@ -5,10 +5,13 @@
   <div class="panel-heading">SWAT - Web Test Automation With Perl. 5 Minutes Tutorial</div>
   <div class="panel-body">
 
+    <i>Given some web app ... (see the example app below)</i><br><br>
+
     <strong># Define http resources</strong>
 
     <pre>
 
+    mkdir hello         # /hello  
     mkdir -p foo/bar    # /foo/bar
     mkdir -p bar/baz    # /bar/baz
     mkdir send_cookie   # /send_cookie
@@ -19,6 +22,7 @@
 
     <pre>
 
+    touch hello/get.txt             # GET   /hello
     touch foo/bar/get.txt           # GET   /foo/bar
     touch bar/baz/post.txt          # POST  /bar/baz
     touch send_cookie/post.txt      # POST  /send_cookie
@@ -37,6 +41,11 @@
 
     <strong># Define expected response</strong>
     <pre>
+
+    # GET  /hello should succeed and return 'Hi there!'
+    echo 200 OK > hello/get.txt
+    echo 'Hi there!' >> hello/get.txt
+
 
     # GET  /foo/bar should succeed and return my greetings
     echo 200 OK > foo/bar/get.txt
@@ -63,7 +72,7 @@
     swat
     </pre>
     
-    <img src="/swat-run.png" style="max-width: 70%; height: auto; " border=1>
+    <img src="/swat-run.png" style="max-width: 70%; height: auto; " border="10">
     <br><br>
 
 
@@ -76,6 +85,10 @@
     
     use Dancer2;
     
+    get '/hello' => sub {
+        return 'Hi there!'
+    };
+
     get '/foo/bar' => sub {
         return "I am get to /foo/bar. you have just told: ".query_parameters->get('greeting')
     };

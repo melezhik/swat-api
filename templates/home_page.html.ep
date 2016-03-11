@@ -7,69 +7,70 @@
 
     <i>Given some web app ... (see the example app below)</i><br><br>
 
+    <strong># Start the App</strong>
+
+    <pre>
+    $ plackup
+    </pre>
+
+    <strong># Define tested application URL</strong>
+    <pre>
+    $ echo '127.0.0.1:5000' > host
+    </pre>
+
     <strong># Define http resources</strong>
 
     <pre>
 
-    mkdir hello         # /hello  
-    mkdir -p foo/bar    # /foo/bar
-    mkdir -p bar/baz    # /bar/baz
-    mkdir send_cookie   # /send_cookie
-
+    $ mkdir hello         # /hello  
+    $ mkdir -p foo/bar    # /foo/bar
+    $ mkdir -p bar/baz    # /bar/baz
+    $ mkdir send_cookie   # /send_cookie
     </pre>
 
     <strong># Define http methods</strong>
 
     <pre>
 
-    touch hello/get.txt             # GET   /hello
-    touch foo/bar/get.txt           # GET   /foo/bar
-    touch bar/baz/post.txt          # POST  /bar/baz
-    touch send_cookie/post.txt      # POST  /send_cookie
-
+    $ touch hello/get.txt             # GET   /hello
+    $ touch foo/bar/get.txt           # GET   /foo/bar
+    $ touch bar/baz/post.txt          # POST  /bar/baz
+    $ touch send_cookie/post.txt      # POST  /send_cookie
     </pre>
 
     <strong># Define request parameters</strong>
 
     <pre>
 
-    echo curl_params="'-G -d greeting=hello1'" > foo/bar/swat.ini
-    echo curl_params="'-d greeting=hello2'"    > bar/baz/swat.ini
-    echo curl_params="'-b name=swat'"          > send_cookie/swat.ini
-
+    $ echo curl_params="'-G -d greeting=hello1'" > foo/bar/swat.ini
+    $ echo curl_params="'-d greeting=hello2'"    > bar/baz/swat.ini
+    $ echo curl_params="'-b name=swat'"          > send_cookie/swat.ini
     </pre>
 
     <strong># Define expected response</strong>
     <pre>
 
     # GET  /hello should succeed and return 'Hi there!'
-    echo 200 OK > hello/get.txt
-    echo 'Hi there!' >> hello/get.txt
-
+    $ echo 200 OK > hello/get.txt
+    $ echo 'Hi there!' >> hello/get.txt
 
     # GET  /foo/bar should succeed and return my greetings
-    echo 200 OK > foo/bar/get.txt
-    echo 'I am get to /foo/bar. you have just told: hello1' >> foo/bar/get.txt
+    $ echo 200 OK > foo/bar/get.txt
+    $ echo 'I am get to /foo/bar. you have just told: hello1' >> foo/bar/get.txt
 
     # POST /bar/baz should succeed and return my greetings
-    echo 200 OK > bar/baz/post.txt
-    echo 'I am post to /bar/baz. you have just told: hello2' >> bar/baz/post.txt
+    $ echo 200 OK > bar/baz/post.txt
+    $ echo 'I am post to /bar/baz. you have just told: hello2' >> bar/baz/post.txt
 
     # POST /send_cookie  should succeed and return my cookie
-    echo 200 OK > send_cookie/post.txt
-    echo 'swat' >> send_cookie/post.txt
-
-    </pre>
-
-    <strong># Define tested application URL</strong>
-    <pre>
-    echo '127.0.0.1:5000' > host
+    $ echo 200 OK > send_cookie/post.txt
+    $ echo 'swat' >> send_cookie/post.txt
     </pre>
 
 
     <strong># Run swat tests</strong>
     <pre>
-    swat
+    $ swat
     </pre>
     
     <img src="/swat-run.png" style="max-width: 70%; height: auto; " border="10">
@@ -77,6 +78,7 @@
 
 
     <strong># Application example</strong>
+
     <pre>
 
     $ cat app.psgi 
@@ -104,9 +106,6 @@
     };
     
     dance;
-
-    $ plackup
-        
     </pre>
 
     <ul>

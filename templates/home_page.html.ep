@@ -7,6 +7,14 @@
 
     <i>Given some web app ... (see the example app below)</i><br><br>
 
+    <strong>  !!!! NOTE !!!! </strong>
+
+    <pre>
+    # The example app will return the wrong thing for this test
+    # Resulting in a failure as seen below
+    </pre>
+
+
     <strong># Start the App</strong>
 
     <pre>
@@ -93,6 +101,8 @@
     get '/foo/bar' => sub {
         return "I am get to /foo/bar. you just told me: ".query_parameters->get('greeting')
     };
+
+    # swat expects something else here, see the contents of bar/baz/post.txt
     
     post '/bar/baz' => sub {
         return "I am post to /bar/baz. you just told me: goodbye"

@@ -31,7 +31,7 @@
     $ touch foo/bar/get.txt
     $ echo curl_params="'-G -d greeting=hello1'" > foo/bar/swat.ini
 
-    # POST  /bar/baz  ( w/ params: greeting=hello2
+    # POST  /bar/baz  ( w/ params: greeting=hello2 )
     $ mkdir -p bar/baz
     $ touch bar/baz/post.txt          
     $ echo curl_params="'-d greeting=hello2'" > bar/baz/swat.ini

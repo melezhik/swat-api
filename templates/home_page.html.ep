@@ -4,43 +4,103 @@
 <div class="panel panel-primary">
   <div class="panel-heading">SWAT - Web Test Automation With Perl. 5 Minutes Tutorial</div>
   <div class="panel-body">
+
+    <strong># Write your tested app</strong>
+    <pre>
+
+    cat app.psgi 
+
+    #!/usr/bin/perl
+    
+    use Dancer2;
+    
+    get '/foo/bar' => sub {
+        return "I am get to /foo/bar. you have just told: ".query_parameters->get('greeting')
+    };
+    
+    post '/bar/baz' => sub {
+        return "I am post to /bar/baz. you have just told: ".params->{'greeting'}
+    };
+    
+    post '/send_cookie' => sub {
+    
+        my $cookie = cookies->{name};
+        return $cookie->value;
+    };
+    
+    dance;
+        
+    </pre>
+
+    <strong># Run it</strong>
+    <pre>
+    plackup
+    </pre>
+
+
     <strong># Define http resources</strong>
 
     <pre>
 
-        mkdir foo/
-        mkdir -p bar/baz
+    mkdir -p foo/bar    # /foo/bar
+    mkdir -p bar/baz    # /bar/baz
+    mkdir send_cookie   # /send_cookie
+
     </pre>
+
     <strong># Define http methods</strong>
 
     <pre>
 
-        touch foo/get.txt           # GET /foo
-        touch foo/put.txt           # PUT /foo
-        touch bar/baz/post.txt      # POST /bar/baz
+    touch foo/bar/get.txt           # GET   /foo/bar
+    touch bar/baz/post.txt          # POST  /bar/baz
+    touch send_cookie/post.txt      # POST  /send_cookie
+
+    </pre>
+
+    <strong># Define request paramatesr</strong>
+
+    <pre>
+
+    echo curl_params="'-G -d greeting=hello1'" > foo/bar/swat.ini
+    echo curl_params="'-d greeting=hello2'"    > bar/baz/swat.ini
+    echo curl_params="'-b name=swat'"          > send_cookie/swat.ini
+
+    </pre>
+
+    <strong># Define expected response</strong>
+    <pre>
+
+    # GET  /foo/bar should succeed and return my greetings
+    echo 200 OK > foo/bar/get.txt
+    echo 'I am get to /foo/bar. you have just told: hello1' >> foo/bar/get.txt
+
+    # POST /bar/baz should succeed and return my greetings
+    echo 200 OK > bar/baz/post.txt
+    echo 'I am post to /bar/baz. you have just told: hello2' >> bar/baz/post.txt
+
+    # POST /send_cookie  should succeed and return my cookie
+    echo 200 OK > send_cookie/post.txt
+    echo 'swat' >> send_cookie/post.txt
 
     </pre>
 
     <strong># Define tested application URL</strong>
     <pre>
-
-        echo 'app.local:8080' >> host
-    </pre>
-    <strong># Define checklists</strong>
-    <pre>
-
-        echo 200 OK > foo/get.txt
-        echo 'Hello I am foo' >> foo/get.txt
-
-        echo 200 OK > foo/get.txt
-        echo 'Hello I am bar/baz' >> bar/baz.txt
+    echo '127.0.0.1:5000' >> host
     </pre>
 
     <strong># Run swat tests</strong>
     <pre>
-        swat
+    swat
     </pre>
+    
+    <img src="/swat-run.png" style="max-width: 70%; height: auto; ">
+
+    <br>
+
     Read more on <a href="https://github.com/melezhik/swat">https://github.com/melezhik/swat</a>
+
   </div>
 </div>
 

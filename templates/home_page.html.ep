@@ -23,19 +23,23 @@
     <pre>
 
     # GET   /hello
+    $ mkdir hello
     $ touch hello/get.txt             
 
     # GET   /foo/bar?greeting=hello1
+    $ mkdir -p foo/bar
     $ touch foo/bar/get.txt
     $ echo curl_params="'-G -d greeting=hello1'" > foo/bar/swat.ini
 
     # POST  /bar/baz  ( w/ params: greeting=hello2
+    $ mkdir bar/baz
     $ touch bar/baz/post.txt          
-    $ echo curl_params="'-d greeting=hello2'"    > bar/baz/swat.ini
+    $ echo curl_params="'-d greeting=hello2'" > bar/baz/swat.ini
 
     # POST  /send_cookie ( w/ params: name=swat )
+    $ mkdir send_cookie
     $ touch send_cookie/post.txt      
-    $ echo curl_params="'-b name=swat'"          > send_cookie/swat.ini
+    $ echo curl_params="'-b name=swat'" > send_cookie/swat.ini
     </pre>
 
     <strong># Define expected response</strong>

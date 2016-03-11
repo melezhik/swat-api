@@ -5,19 +5,23 @@
   <div class="panel-heading">SWAT - Web Test Automation With Perl. 5 Minutes Tutorial</div>
   <div class="panel-body">
     <strong># Define http resources</strong>
+
     <pre>
 
         mkdir foo/
         mkdir -p bar/baz
     </pre>
     <strong># Define http methods</strong>
+
     <pre>
 
-        touch foo/get.txt
-        touch foo/put.txt
-        touch bar/baz/post.txt
+        touch foo/get.txt           # GET /foo
+        touch foo/put.txt           # PUT /foo
+        touch bar/baz/post.txt      # POST /bar/baz
+
     </pre>
-    <strong># Define tested hostname</strong>
+
+    <strong># Define tested application URL</strong>
     <pre>
 
         echo 'app.local:8080' >> host
@@ -31,6 +35,7 @@
         echo 200 OK > foo/get.txt
         echo 'Hello I am bar/baz' >> bar/baz.txt
     </pre>
+
     <strong># Run swat tests</strong>
     <pre>
         swat

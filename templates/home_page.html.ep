@@ -5,39 +5,6 @@
   <div class="panel-heading">SWAT - Web Test Automation With Perl. 5 Minutes Tutorial</div>
   <div class="panel-body">
 
-    <strong># Write your tested app</strong>
-    <pre>
-
-    cat app.psgi 
-
-    #!/usr/bin/perl
-    
-    use Dancer2;
-    
-    get '/foo/bar' => sub {
-        return "I am get to /foo/bar. you have just told: ".query_parameters->get('greeting')
-    };
-    
-    post '/bar/baz' => sub {
-        return "I am post to /bar/baz. you have just told: ".params->{'greeting'}
-    };
-    
-    post '/send_cookie' => sub {
-    
-        my $cookie = cookies->{name};
-        return $cookie->value;
-    };
-    
-    dance;
-        
-    </pre>
-
-    <strong># Run it</strong>
-    <pre>
-    plackup
-    </pre>
-
-
     <strong># Define http resources</strong>
 
     <pre>
@@ -90,6 +57,7 @@
     echo '127.0.0.1:5000' >> host
     </pre>
 
+
     <strong># Run swat tests</strong>
     <pre>
     swat
@@ -97,6 +65,37 @@
     
     <img src="/swat-run.png" style="max-width: 70%; height: auto; " border=1>
     <br><br>
+
+
+    <strong># Application example</strong>
+    <pre>
+
+    $ cat app.psgi 
+
+    #!/usr/bin/perl
+    
+    use Dancer2;
+    
+    get '/foo/bar' => sub {
+        return "I am get to /foo/bar. you have just told: ".query_parameters->get('greeting')
+    };
+    
+    post '/bar/baz' => sub {
+        return "I am post to /bar/baz. you have just told: ".params->{'greeting'}
+    };
+    
+    post '/send_cookie' => sub {
+    
+        my $cookie = cookies->{name};
+        return $cookie->value;
+    };
+    
+    dance;
+
+    $ plackup
+        
+    </pre>
+
     <ul>
 
     <li>

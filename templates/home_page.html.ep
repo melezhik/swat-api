@@ -36,7 +36,6 @@
     # POST  /send_cookie ( w/ params: name=swat )
     $ touch send_cookie/post.txt      
     $ echo curl_params="'-b name=swat'"          > send_cookie/swat.ini
-
     </pre>
 
     <strong># Define expected response</strong>

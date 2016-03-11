@@ -7,14 +7,6 @@
 
     <i>Given some web app ... (see the example app below)</i><br><br>
 
-    <strong>  !!!! NOTE !!!! </strong>
-
-    <pre>
-    # The example app will return the wrong thing for this test
-    # Resulting in a failure as seen below
-    </pre>
-
-
     <strong># Start the App</strong>
 
     <pre>
@@ -38,6 +30,9 @@
     $ mkdir -p foo/bar
     $ touch foo/bar/get.txt
     $ echo curl_params="'-G -d greeting=hello'" > foo/bar/swat.ini
+
+    # The example app will return the wrong thing for this test
+    # Resulting in a failure as seen below
 
     # POST  /bar/baz  ( with params: greeting=hello )
     $ mkdir -p bar/baz

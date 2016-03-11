@@ -52,11 +52,11 @@
 
     # GET  /foo/bar should succeed and return my greetings
     $ echo 200 OK > foo/bar/get.txt
-    $ echo 'I am get to /foo/bar. you have just told: hello1' >> foo/bar/get.txt
+    $ echo 'I am get to /foo/bar. you just told me: hello1' >> foo/bar/get.txt
 
     # POST /bar/baz should succeed and return my greetings
     $ echo 200 OK > bar/baz/post.txt
-    $ echo 'I am post to /bar/baz. you have just told: hello2' >> bar/baz/post.txt
+    $ echo 'I am post to /bar/baz. you just told me: hello2' >> bar/baz/post.txt
 
     # POST /send_cookie  should succeed and return my cookie
     $ echo 200 OK > send_cookie/post.txt
@@ -88,11 +88,11 @@
     };
 
     get '/foo/bar' => sub {
-        return "I am get to /foo/bar. you have just told: ".query_parameters->get('greeting')
+        return "I am get to /foo/bar. you just told me: ".query_parameters->get('greeting')
     };
     
     post '/bar/baz' => sub {
-        return "I am post to /bar/baz. you have just told: ".params->{'greeting'}
+        return "I am post to /bar/baz. you just told me: ".params->{'greeting'}
     };
     
     post '/send_cookie' => sub {

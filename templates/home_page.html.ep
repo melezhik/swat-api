@@ -56,7 +56,10 @@
 
     # POST /bar/baz should succeed and return my greeting
     $ echo 200 OK > bar/baz/post.txt
-    $ echo 'I am post to /bar/baz. you just told me: hello' >> bar/baz/post.txt
+    $ cat bar/baz/post.txt
+        200 OK
+        within: I am post to \/bar\/baz
+        you just told me: hello
 
     # POST /send_cookie  should succeed and return my cookie
     $ echo 200 OK > send_cookie/post.txt

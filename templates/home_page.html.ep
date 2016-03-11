@@ -50,13 +50,13 @@
     $ echo 200 OK > hello/get.txt
     $ echo 'Hi there!' >> hello/get.txt
 
-    # GET  /foo/bar should succeed and return my greetings
+    # GET  /foo/bar should succeed and return my greeting
     $ echo 200 OK > foo/bar/get.txt
     $ echo 'I am get to /foo/bar. you just told me: hello1' >> foo/bar/get.txt
 
-    # POST /bar/baz should succeed and return my greetings
+    # POST /bar/baz should succeed and return my greeting
     $ echo 200 OK > bar/baz/post.txt
-    $ echo 'I am post to /bar/baz. you just told me: hello2' >> bar/baz/post.txt
+    $ echo 'I am post to /bar/baz. you just told me: goodby' >> bar/baz/post.txt
 
     # POST /send_cookie  should succeed and return my cookie
     $ echo 200 OK > send_cookie/post.txt

@@ -26,15 +26,15 @@
     $ mkdir hello
     $ touch hello/get.txt             
 
-    # GET   /foo/bar?greeting=hello1
+    # GET   /foo/bar?greeting=hello
     $ mkdir -p foo/bar
     $ touch foo/bar/get.txt
-    $ echo curl_params="'-G -d greeting=hello1'" > foo/bar/swat.ini
+    $ echo curl_params="'-G -d greeting=hello'" > foo/bar/swat.ini
 
-    # POST  /bar/baz  ( with params: greeting=hello2 )
+    # POST  /bar/baz  ( with params: greeting=hello )
     $ mkdir -p bar/baz
     $ touch bar/baz/post.txt          
-    $ echo curl_params="'-d greeting=hello2'" > bar/baz/swat.ini
+    $ echo curl_params="'-d greeting=hello'" > bar/baz/swat.ini
 
     # POST  /send_cookie ( with cookie: name=swat )
     $ mkdir send_cookie
@@ -52,11 +52,11 @@
 
     # GET  /foo/bar should succeed and return my greeting
     $ echo 200 OK > foo/bar/get.txt
-    $ echo 'I am get to /foo/bar. you just told me: hello1' >> foo/bar/get.txt
+    $ echo 'I am get to /foo/bar. you just told me: hello' >> foo/bar/get.txt
 
     # POST /bar/baz should succeed and return my greeting
     $ echo 200 OK > bar/baz/post.txt
-    $ echo 'I am post to /bar/baz. you just told me: goodby' >> bar/baz/post.txt
+    $ echo 'I am post to /bar/baz. you just told me: hello' >> bar/baz/post.txt
 
     # POST /send_cookie  should succeed and return my cookie
     $ echo 200 OK > send_cookie/post.txt
@@ -92,7 +92,7 @@
     };
     
     post '/bar/baz' => sub {
-        return "I am post to /bar/baz. you just told me: ".params->{'greeting'}
+        return "I am post to /bar/baz. you just told me: goodbye"
     };
     
     post '/send_cookie' => sub {

@@ -1,0 +1,191 @@
+%= bootstrap 'all'
+%== include 'app_header'
+
+<div class="panel panel-primary"">
+  <div class="panel-heading">SWAT - frequently asked questions</div>
+  <div class="panel-body">
+
+    <blockquote>
+        What is swat story?
+    </blockquote>
+
+    <i> Swat story is essential abstraction to describe elementary swat test.
+    It consists of 3 components or answer on 2 following questions:</i>
+
+    <pre>
+    1. What kind of http request will be send?
+    2. What kind of http response is expected to receive?
+    </pre>
+
+    <i>A three components make a swat story:</i>
+
+    <pre>
+
+    1. http resource ( or http endpoint ) - defined by directory path:
+
+    foo/            for resource    /foo
+    foo/bar/        for resource    /foo/bar
+    bar/baz         for resource    /bar/baz
+    </pre>
+
+    </pre>
+
+    <pre>
+
+    2. http verb or http method - defined by http method file:
+
+    get.txt     for GET
+    post.txt    for POST
+    put.txt     for PUT
+
+    ... so on, see next question concerning defining http verbs 
+    </pre>
+
+    <pre>
+
+    3. expected content returned on given request sent - defined by content of http file:
+
+    $ cat get.txt
+    200 OK
+    <title>Hello World</title>
+    </pre>
+
+    <blockquote>
+        How can I define different http verbs using swat ?
+    </blockquote>
+
+    <i>use a predefined file names to define http verbs:</i>
+
+    <pre>
+    get.txt     for GET     request
+    post.txt    for POST    request
+    delete.txt  for DELETE  request
+    put.txt     for PUT     request
+    </pre>
+
+    <blockquote>
+        How can I do POST request using swat ?
+    </blockquote>
+
+    <i>Use post.txt as http method file and set curl_params variable inside swat.ini file to define proper request parameters:</i>
+
+    <pre>
+
+    # given a request POST /foo with query parameters: greeting=hello and name=swat 
+
+    # define http resource and http verb:
+
+    $ mkdir foo/
+    $ touch foo/post.txt
+    
+    # define query parameters:
+    
+    $ cat foo/swat.ini
+
+    curl_params='-d greeting=hello -d name=swat'
+    </pre>
+
+    <blockquote>
+        How can I do GET request with parameters ?
+    </blockquote>
+
+    <i>Use get.txt as http method file and set curl_params variable inside swat.ini file to define proper request parameters:</i>
+
+    <pre>
+
+    # given a request GET /foo?greeting=hello&name=swat 
+
+    # define http resource and http verb:
+
+    $ mkdir foo/
+    $ touch foo/post.txt
+    
+    # define query parameters:
+    
+    $ cat foo/swat.ini
+
+    curl_params='-G -d greeting=hello -d name=swat'
+    </pre>
+
+    <blockquote>
+        What is swat downstream story ?
+    </blockquote>
+
+    <i>First of all this is regular swat story, and then it is a story get called from other story named upstream story. Thus downstream stories are never executed as standalone tests but should considered
+like reusable swat stories or modules, for example:</i>
+
+    <pre>
+    # this is upstream swat story
+
+    $ mkdir restricted-resource
+    $ touch restricted-resource/get.txt
+    $ cat restricted-resource/hook.pm
+
+        # to run downstream story
+        # use run_swat_module() function
+        # inside story hook
+        run_swat_module( POST => '/login')
+
+    # and this one is downstream story
+    # to make story downstream
+    # simple say swat_module=1
+    # inside story ini file:
+
+    $ mkdir login/
+    $ touch login/post.txt
+    $ echo swat_module=1 > login/swat.ini
+    </pre>
+
+    <blockquote>
+        How can I do more then one request at one test file ?
+    </blockquote>
+    
+    Use swat meta type to define a meta story and then call downstream stories
+    inside meta story. Meta story acts like container for multiple http requests.
+    
+    <pre>
+        # make GET foo/
+        # then POST bar/ 
+        # then GET foo/bar 
+
+        # create meta story
+
+        $ mkdir meta-story
+        $ cat meta-story/meta.txt
+
+            Creating this file
+            We denote story type as meta
+            That means this story
+            Does not relate any http request
+            But instead run other stories
+            Via hook.pm file
+            The content of meta file
+            Will be shown 
+            During test execution
+
+        $ cat meta-story/hook.pm
+
+            run_swat_module( GET => '/foo' );
+            run_swat_module( POST => '/bar' );
+            run_swat_module( GET => '/foo/bar' );
+    </pre>
+
+    <blockquote>
+        What is swat check list ?
+    </blockquote>
+
+    <i>This is content of http method file. The reason to call content of http method file as
+    check list is lines of these files define check pattern to validate content returned by server.
+For example: </i>
+
+    <pre>
+    $ cat post.txt
+    201 Create
+    New item created
+    </pre>
+  </div>
+</div>
+
+%== include 'app_footer'
+
+

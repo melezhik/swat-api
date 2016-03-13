@@ -8,6 +8,8 @@ plugin 'BootstrapHelpers';
 
 get '/' => 'home_page';
 
+get '/faq' => 'faq_page';
+
 get '/sparrowhub' => 'sph_page';
 
 get '/doc' => 'doc_page';

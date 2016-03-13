@@ -1,5 +1,6 @@
 <ul class="nav nav-pills">
     <li><a href="/">Home</a></li>
+    <li><a href="/faq">FAQ</a></li>
     <li><a href="/sparrowhub">SparrowHub</a></li>
     <li><a href="/doc">Documentation</a></li>
 </ul>

@@ -134,8 +134,9 @@ http method files, see also previous question "What is swat story?". This is exa
         What is swat ini file ?
     </blockquote>
 
-    <i>swat ini file is a tiny bash script to setup some parameter for swat stories. There various levels swat ini files
-- per project level, ~/swat.ini file, story level ini file. Various levels ini files get merged according level priority, when swat find the same settings defined at different swat.ini fil locations the location with highest priority wins, pleas read more about this on swat documentation pages. Basicly people use swat.ini file as per story basis to setup
+    <i>Swat ini files are a tiny bash scripts to set additional parameters for swat stories. <br><br>There are various levels swat ini files:  per project level ($project_root_directory/swat.ini), perl user's home level (~/swat.ini) and finaly  per story level ( $story_resource_dir/swat.ini ). 
+    <br><br>
+    Various levels ini files get merged according level priority, when swat find the same settings defined at different swat.ini fil locations the location with highest priority wins, pleas read more about this on swat documentation pages. <br><br> Basicly people use swat.ini file as per story basis to setup
 some parameters for given story. For example: </i>
 
     <pre>

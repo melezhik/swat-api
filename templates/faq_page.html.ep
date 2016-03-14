@@ -45,6 +45,18 @@
     </pre>
 
     <blockquote>
+        What is a swat elementary test?
+    </blockquote>
+
+    <i>Swat elementary test is based on swat story, during test execution swat does follows:</i>
+
+    <ol>
+        <li>creates http request based on swat story data and send it to server </li>
+        <li>check if servers returns successful http code</li>
+        <li>if check list is not empty validate server response according check list rules</li>
+    </ol>
+
+    <blockquote>
         What is a swat project?
     </blockquote>
 

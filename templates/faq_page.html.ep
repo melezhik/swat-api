@@ -343,7 +343,7 @@ F..e if you have directory foo/bar and file foo/bar/get.txt swat will send http 
     </pre>
 
     <blockquote>
-        I know swat treat web server content as plain text and only allow search using regular expression or plain
+        I know swat treats web server content as plain text and only allows search using regular expression or plain
 strings, what if I need to parse a content using for example XML/JSON/DOM/XPATH/HTML parsers?
     </blockquote>
 

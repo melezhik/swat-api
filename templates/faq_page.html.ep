@@ -327,6 +327,21 @@ to validate server response, see also question "What is swat check list ?"</i>
     <i>By default swat perform a basic http checks based on existence of http method files and resource directories.
 F..e if you have directory foo/bar and file foo/bar/get.txt swat will send http request GET /foo/bar and verify that it succeed, meaning a successful http code returned ( status code  >= 200 and < 400 ). If you need to verify content returned by request you need to add some check patterns to swat check file, f.e. <code>echo 'Hi! This is cool server here' >> foo/bar/get.txt </code></i>
 
+
+    <blockquote>
+        How can I check bad http response codes returned from server?
+    </blockquote>
+
+    <i>First you need to set ignore_http_err inside swat ini file, second you need to add check pattern to express returned http code and possible message:</i>
+
+    <pre>
+    $ mkdir restricted/
+    $ cat restricted/swat.ini
+    ignore_http_err=1
+    $ cat restricted/get.txt
+    404 Not Found
+    </pre>
+
   </div>
 </div>
 

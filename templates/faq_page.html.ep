@@ -12,12 +12,13 @@
     <i> Swat story is essential abstraction to describe elementary swat test.
     It consists of 3 components or answer on 2 following questions:</i>
 
-    <pre>
-    1. What kind of http request will be send?
-    2. What kind of http response is expected to receive?
-    </pre>
+    <ol>
+        <li> What kind of http request will be send? </li>
+        <li> What kind of http response is expected to receive? </li>
+    </ol>
 
     <i>A three components make a swat story:<br><br>
+
     1. http resource ( or http endpoint ) - defined by directory path:</i>
 
     <pre>

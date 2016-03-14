@@ -55,7 +55,23 @@
     </blockquote>
 
     <i>Swat project is the set of swat stories. Technically speaking it's a directory holding all the swat resources and 
-http method files, see also previous question "What is swat story?"</i>
+http method files, see also previous question "What is swat story?". This is example of swat project file structure:</i>
+
+    <pre>
+        project/
+        ├── baz
+        │   ├── swat.ini
+        │   ├── get.txt
+        │   └── hook.pm
+        ├── foo
+        │   ├── bar
+        │   │   ├── post.txt
+        │   │   └── hook.pm
+        │   ├── get.txt
+        │   └── hook.pm
+        └── host
+        
+    </pre>
 
     <blockquote>
         How can I define different http verbs using swat ?

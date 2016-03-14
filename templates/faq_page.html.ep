@@ -95,7 +95,7 @@ http method files, see also previous question "What is swat story?". This is exa
         Is swat story equal to a single test?
     </blockquote>
 
-    <i>Basicly yes. If swat story directory contain only one http request file than it is true:</i>
+    <i>Yes. Swat story is always a couple of things - swat story directory and http request file:</i>
 
     <pre>
     # a single test will be performed according this swat story:
@@ -104,10 +104,11 @@ http method files, see also previous question "What is swat story?". This is exa
     $ touch foo/get.txt
     </pre>
 
-    <i>but if swat story contains more than one http request files than every file will be resulted in sending a specific http request, so we have 2 tests per one swat story: </i>
+    <i>A confusion may occur though if swat story directory contains more than one http request file, every file will be resulted then in sending a specific http request, so we have 2 tests - 2 swat stories here: </i>
 
     <pre>
-    # a 2 single tests will be performed according this swat story:
+    # one story directory but 2 stories here,
+    # thus 2 single tests - 2 swat stories will be executed:
 
     # GET /foo
     # and

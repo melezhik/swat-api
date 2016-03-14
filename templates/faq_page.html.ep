@@ -357,14 +357,14 @@ writing a middleware code called processor function. For example to parse JSON:
     $ touch foo/get.txt
     $ cat foo/hook.pm
     set_response_processor( sub { 
-        # processor function
-        my $headers   = shift;
-        my $body      = shift;
-        use JSON;
-        $hash = decode_json($body);
-        return 'Foo.Bar.Baz : '.( $hash->{Foo}->{Bar}->{Baz} )."\n";
+            # processor function
+            my $headers   = shift;
+            my $body      = shift;
+            use JSON;
+            $hash = decode_json($body);
+            return 'Foo.Bar.Baz : '.( $hash->{Foo}->{Bar}->{Baz} )."\n";
+        }
     }
-
     # and then in foo/get.txt
 
     $ cat foo/get.txt

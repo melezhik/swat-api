@@ -342,6 +342,35 @@ F..e if you have directory foo/bar and file foo/bar/get.txt swat will send http 
     404 Not Found
     </pre>
 
+    <blockquote>
+        I know swat treat web server content as plain text and only allow search using regular expression or plain
+strings, what if I need to parse a content using for example XML/JSON/DOM/XPATH/HTML parsers?
+    </blockquote>
+
+    <i>By default swat does as you say - plain text, regular expression / text search. But you may extend this functionality
+writing a middleware code called processor function. For example to parse JSON:
+ </i>
+
+
+    <pre>
+    $ mkdir foo/
+    $ touch foo/get.txt
+    $ cat foo/hook.pm
+    set_response_processor( sub { 
+        # processor function
+        my $headers   = shift;
+        my $body      = shift;
+        use JSON;
+        $hash = decode_json($body);
+        return 'Foo.Bar.Baz : '.( $hash->{Foo}->{Bar}->{Baz} )."\n";
+    }
+
+    # and then in foo/get.txt
+
+    $ cat foo/get.txt
+    Foo.Bar.Baz : OK
+    </pre>
+    
   </div>
 </div>
 

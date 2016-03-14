@@ -87,6 +87,38 @@ http method files, see also previous question "What is swat story?". This is exa
     <i>This is a synonym for swat story directory with emphasis of fact that swat story directories acts in two ways - as containers for http method files and as the names for http resources </i>
 
     <blockquote>
+        What is a http request file?
+    </blockquote>
+
+    <i> This is the synonym for http method file with emphasis on the fact that couple of things http resource directory and http method file makes a real http request to be sent to server</i>
+
+    <blockquote>
+        Is swat story equal to a single test?
+    </blockquote>
+
+    <i>Basicly yes. If swat story directory contain only one http request file than it is true:</i>
+
+    <pre>
+    # a single test will be performed according this swat story:
+    # GET /foo
+    $ mkdir foo
+    $ touch foo/get.txt
+    </pre>
+
+    <i>but if swat story contains more than one http request files than every file will be resulted in sending a specific http request, so we have 2 tests per one swat story: </i>
+
+    <pre>
+    # a 2 single tests will be performed according this swat story:
+
+    # GET /foo
+    # and
+    # POST /foo
+    $ mkdir foo
+    $ touch foo/get.txt
+    $ touch foo/post.txt
+    </pre>
+
+    <blockquote>
         How can I define different http verbs using swat ?
     </blockquote>
 

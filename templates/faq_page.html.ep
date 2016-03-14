@@ -132,6 +132,24 @@ http method files, see also previous question "What is swat story?". This is exa
     </pre>
 
     <blockquote>
+        I have one http resource directory and two http method files get.txt and post.txt how can I setup http requests differently using swat ini file?
+    </blockquote>
+
+    <i>Swat exports special environment variables to identify http method and other swat data inside ini file. <br>
+    As swat ini files are bash script you may use bash conditional here. This is example on it:</i>
+
+    <pre>
+    $ touch get.txt
+    $ touch post.txt
+    $ cat swat.ini
+    if test "${http_method}" = "GET"; then
+        : # do something
+    elif test "${http_method}" = "POST"; then
+        : # do something
+    fi
+    </pre>
+
+    <blockquote>
         How can I do POST request using swat ?
     </blockquote>
 

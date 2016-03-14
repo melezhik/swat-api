@@ -167,30 +167,30 @@ like reusable swat stories or modules, for example:</i>
     inside meta story. Meta story acts like container for multiple http requests.
     
     <pre>
-        # make GET foo/
-        # then POST bar/ 
-        # then GET foo/bar 
+    # make GET foo/
+    # then POST bar/ 
+    # then GET foo/bar 
 
-        # create meta story
+    # create meta story
 
-        $ mkdir meta-story
-        $ cat meta-story/meta.txt
+    $ mkdir meta-story
+    $ cat meta-story/meta.txt
 
-            Creating this file
-            We denote story type as meta
-            That means this story
-            Does not relate any http request
-            But instead run other stories
-            Via hook.pm file
-            The content of meta file
-            Will be shown 
-            During test execution
+        Creating this file
+        We denote story type as meta
+        That means this story
+        Does not relate any http request
+        But instead run other stories
+        Via hook.pm file
+        The content of meta file
+        Will be shown 
+        During test execution
 
-        $ cat meta-story/hook.pm
+    $ cat meta-story/hook.pm
 
-            run_swat_module( GET => '/foo' );
-            run_swat_module( POST => '/bar' );
-            run_swat_module( GET => '/foo/bar' );
+        run_swat_module( GET => '/foo' );
+        run_swat_module( POST => '/bar' );
+        run_swat_module( GET => '/foo/bar' );
     </pre>
 
     <blockquote>

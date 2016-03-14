@@ -131,6 +131,28 @@ http method files, see also previous question "What is swat story?". This is exa
     </pre>
 
     <blockquote>
+        What is swat ini file ?
+    </blockquote>
+
+    <i>swat ini file is a tiny bash script to setup some parameter for swat stories. There various levels swat ini files
+- per project level, ~/swat.ini file, story level ini file. Various levels ini files get merged according level priority, when swat find the same settings defined at different swat.ini fil locations the location with highest priority wins, pleas read more about this on swat documentation pages. Basicly people use swat.ini file as per story basis to setup
+some parameters for given story. For example: </i>
+
+    <pre>
+
+    # define some query parameter for GET foo/bar :
+    $ touch foo/bar/get.txt
+    $ cat foo/bar/swat.ini
+    curl_params='-G -d foo=1 -d bar=2'
+
+    # mark story foo/bar/baz  as swat module:
+    $ touch foo/bar/baz/get.txt
+    $ cat foo/bar/baz/swat.ini
+    swat_module=1
+
+    </pre>
+
+    <blockquote>
         What is swat downstream story ?
     </blockquote>
 

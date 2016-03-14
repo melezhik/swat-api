@@ -41,7 +41,7 @@
     <pre>
     $ cat get.txt
     200 OK
-    <title>Hello World<\/title>
+    Hello World
     </pre>
 
     <blockquote>

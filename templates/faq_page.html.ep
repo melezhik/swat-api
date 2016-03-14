@@ -6,7 +6,7 @@
   <div class="panel-body">
 
     <blockquote>
-        What is swat story?
+        What is a swat story?
     </blockquote>
 
     <i> Swat story is essential abstraction to describe elementary swat test.
@@ -51,16 +51,23 @@
     </pre>
 
     <blockquote>
+        What is a swat project?
+    </blockquote>
+
+    <i>Swat project is the set of swat stories. Technically speaking it's a directory holding all the swat resources and 
+http method files, see also previous question "What is swat story?"</i>
+
+    <blockquote>
         How can I define different http verbs using swat ?
     </blockquote>
 
     <i>use a predefined file names to define http verbs:</i>
 
     <pre>
-    get.txt     for GET     request
-    post.txt    for POST    request
-    delete.txt  for DELETE  request
-    put.txt     for PUT     request
+    $ touch get.txt     # for GET     request
+    $ touch post.txt    # for POST    request
+    $ touch delete.txt  # for DELETE  request
+    $ touch put.txt     # for PUT     request
     </pre>
 
     <blockquote>
@@ -183,6 +190,22 @@ For example: </i>
     201 Create
     New item created
     </pre>
+
+    <blockquote>
+        What is swat check file?
+    </blockquote>
+
+    <i>It's just a synonym for swat http method file term, emphasising the fact that http method file contains check patterns
+to validate server response, see also question "What is swat check list ?"</i>
+
+
+    <blockquote>
+        If I live  swat check files empty what kind of checking would be performed?
+    </blockquote>
+
+    <i>By default swat perform a basic http checks based on existence of http method files and resource directories.
+F..e if you have directory foo/bar and file foo/bar/get.txt swat will send http request GET /foo/bar and verify that it succeed, meaning a successful http code returned ( status code  >= 200 and <=300 ). If you need to verify content returned by request you need to add some check patterns to swat check file, f.e. <code>echo 'Hi! This is cool server here' >> foo/bar/get.txt </code></i>
+
   </div>
 </div>
 

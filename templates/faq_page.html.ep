@@ -308,6 +308,19 @@ to validate server response, see also question "What is swat check list ?"</i>
 
 
     <blockquote>
+        How can I define check patterns or rules to verify web service content?
+    </blockquote>
+
+    <i>You need to describe such a rules inside swat check file: </i>
+
+    <pre>
+    $ cat foo/get.txt
+    200 OK # probably no need do add this, as swat checks successful http code by default
+    HELLO WORLD # this line should be in response
+    regexp: foo-* # yes you may use regexps
+    </pre>
+
+    <blockquote>
         If I live  swat check files empty what kind of checking would be performed?
     </blockquote>
 

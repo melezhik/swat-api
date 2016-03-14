@@ -36,7 +36,7 @@
     </pre>
 
 
-    <i>3. expected content returned on given request sent - defined by content of http file:</i>
+    <i>3. expected content returned when given http request sent - defined by content of http method file:</i>
 
     <pre>
     $ cat get.txt

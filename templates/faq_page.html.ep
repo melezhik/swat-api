@@ -64,7 +64,6 @@ http method files, see also previous question "What is swat story?". This is exa
         │   ├── get.txt
         │   └── hook.pm
         └── host
-        
     </pre>
 
     <blockquote>
@@ -221,7 +220,6 @@ http method files, see also previous question "What is swat story?". This is exa
     $ touch foo/bar/baz/get.txt
     $ cat foo/bar/baz/swat.ini
     swat_module=1
-
     </pre>
 
     <blockquote>

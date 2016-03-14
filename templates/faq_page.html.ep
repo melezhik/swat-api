@@ -23,9 +23,9 @@
 
     1. http resource ( or http endpoint ) - defined by directory path:
 
-    foo/            for resource    /foo
-    foo/bar/        for resource    /foo/bar
-    bar/baz         for resource    /bar/baz
+    $ mkdir foo/           # for resource    /foo
+    $ mkdir foo/bar/       # for resource    /foo/bar
+    $ mkdir -p bar/baz     # for resource    /bar/baz
     </pre>
 
     </pre>
@@ -72,6 +72,25 @@ http method files, see also previous question "What is swat story?". This is exa
         └── host
         
     </pre>
+
+    <blockquote>
+        What is a swat story directory?
+    </blockquote>
+
+    <i>This is a directory defining a swat story, from other hand it's directory defining a http resource:</i>
+
+    <pre>
+    $ mkdir foo             # story `foo' or http resource /foo
+    $ mkdir -p foo/bar/baz  # story `foo/bar/baz' or http resource /foo/bar/baz
+    </pre>
+
+    Also please take a look at "What is a swat story?" question.
+
+    <blockquote>
+        What is a http resource directory?
+    </blockquote>
+
+    <i>This is a synonym for swat story directory with emphasis of fact that swat story directories acts in two ways - as containers for http method files and as the names for http resources </i>
 
     <blockquote>
         How can I define different http verbs using swat ?
@@ -138,7 +157,7 @@ http method files, see also previous question "What is swat story?". This is exa
 
     <br><br>
 
-    There are various levels swat ini files:  per project level ($project_root_directory/swat.ini), perl user's home level (~/swat.ini) and finaly  per story level ( $story_resource_dir/swat.ini ). 
+    There are various levels swat ini files:  per project level ($project_root_directory/swat.ini), perl user's home level (~/swat.ini) and finally  per story level ( $story_resource_dir/swat.ini ). 
 
     <br><br>
 

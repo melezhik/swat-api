@@ -17,33 +17,39 @@
         <li> What kind of http response is expected to receive? </li>
     </ol>
 
-    <i>A three components make a swat story:<br><br>
+    <i>A three components make a swat story:</i>
 
-    1. http resource ( or http endpoint ) - defined by directory path:</i>
+    <ol>
+
+    <li>http resource ( or http endpoint / route  ) - defined by directory path:
 
     <pre>
     $ mkdir foo/           # for resource    /foo
     $ mkdir foo/bar/       # for resource    /foo/bar
     $ mkdir -p bar/baz     # for resource    /bar/baz
     </pre>
+    </li>
 
-    <i>2. http verb or http method - defined by http method file:</i>
-
+    <li>http verb or http method - defined by http method file:
+    
     <pre>
     $ touch get.txt    # for GET
     $ touch post.txt   # for POST
     $ touch put.txt    # for PUT
     # ... so on, see next question concerning defining http verbs 
     </pre>
+    </li>
 
-
-    <i>3. expected content returned when given http request sent - defined by content of http method file:</i>
+    <li>expected content returned when given http request sent - defined by content of http method file:
 
     <pre>
     $ cat get.txt
     200 OK
     Hello World
     </pre>
+    </li>
+
+    </ol>
 
     <blockquote>
         What is a swat elementary test?
